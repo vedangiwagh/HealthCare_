@@ -10,11 +10,15 @@ import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule} from './app-routing/app-routing.module';
+import { DoctorsComponent } from './doctors/doctors.component';
+import { DoctordetailComponent } from './doctordetail/doctordetail.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    DoctorsComponent,
+    DoctordetailComponent
   ],
   imports: [
     BrowserModule,
