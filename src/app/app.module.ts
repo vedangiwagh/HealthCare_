@@ -12,13 +12,16 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule} from './app-routing/app-routing.module';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctordetailComponent } from './doctordetail/doctordetail.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { BookingComponent } from './booking/booking.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
     DoctorsComponent,
-    DoctordetailComponent
+    DoctordetailComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import { DoctordetailComponent } from './doctordetail/doctordetail.component';
     AngularFireAuthModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
