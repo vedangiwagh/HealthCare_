@@ -29,9 +29,16 @@ export class BookingService {
       });
     }
 
-    getAppointments(): Observable<BookingDoc[]> {
+    getAppointments(): Observable<Booking[]> {
       if (this.userId) {
-        return this.afs.collection<BookingDoc>('appointments', ref => ref.where('user', '==', this.userId)).valueChanges();
+        return this.afs.collection<Booking>('appointments', ref => ref.where('user', '==', this.userId)).snapshotChanges()
+        .pipe(map(actions => {
+          return actions.map(action => {
+            const data = action.payload.doc.data() as Booking;
+            const _id = action.payload.doc.id;
+            return { _id, ...data };
+          });
+        }));
       } else {
         return throwError('No User Logged In!');
       }
@@ -41,9 +48,9 @@ export class BookingService {
     //     return this.afs.collection<BookingDoc>('appointments', ref => ref.where('doctor', '==', doctorid)).valueChanges();
     //   } 
     // }
-    postAppointment(id: string, date: string) {
+    postAppointment(id: string, date: string, time: number) {
       if (this.userId) {
-        return this.afs.collection('appointments').add({user: this.userId, doctor: id, date:date });
+        return this.afs.collection('appointments').add({user: this.userId, doctor: id, date:date, time:time });
       } else {
         return Promise.reject(new Error('No User Logged In!'));
       }
@@ -62,12 +69,7 @@ export class BookingService {
     deleteAppointment(id: string): Promise<void> {
       const db = firebase.firestore();
       if (this.userId) {
-        return db.collection('appointments').where('user', '==', this.userId).where('doctor', '==', id).get()
-        .then(doc => {
-          doc.forEach( docu => {
-            return db.doc('appointments/' + docu.id).delete();
-          });
-        });
+          return db.doc('appointments/' + id).delete();
       } else {
         return Promise.reject(new Error('No User Logged In!'));
       }

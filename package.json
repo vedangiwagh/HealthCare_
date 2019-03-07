@@ -22,11 +22,22 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
+    "@progress/kendo-angular-dateinputs": "^3.6.0",
+    "@syncfusion/ej2-angular-calendars": "^16.4.55",
+    "angular-bootstrap-datetimepicker": "^2.2.1",
+    "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "firebase": "^5.8.4",
+    "moment": "^2.24.0",
+    "ng-pick-datetime": "^5.2.6",
     "ng2-search-filter": "^0.4.7",
+    "open-iconic": "^1.1.1",
     "rxjs": "~6.2.0",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "@progress/kendo-angular-intl": "^1.4.0",
+    "@progress/kendo-angular-l10n": "^1.1.0",
+    "rxjs-compat": "^6.0.0",
+    "@progress/kendo-theme-default": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.0",

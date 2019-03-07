@@ -9,7 +9,7 @@ import { DoctorService } from '../services/doctor.service';
 })
 export class BookingComponent implements OnInit {
 
-  appointments = { user: '', doctors: []};
+  appointments : Booking[];
   bookappointment: BookingDoc[];
   errMess: string;
   favorite: BookingDoc;
@@ -19,32 +19,16 @@ export class BookingComponent implements OnInit {
   ngOnInit() {
     this.bookingservice.getAppointments()
       .subscribe(appointments => {
-        this.appointments = { user: '', doctors: []};
-        appointments.forEach(appointment => {
-          this.doctorservice.getDoctor(appointment.doctor)
-            .subscribe(doctor => {
-              this.appointments.doctors.push(doctor);
-            });
-        });
+        this.appointments = appointments;
       },
       errmess => this.errMess = <any>errmess);
   }
 
   cancelAppointment(id: string) {
     this.bookingservice.deleteAppointment(id)
-      .then(() => {
-        this.bookingservice.getAppointments()
-        .subscribe(appointment => {
-          this.appointments = { user: '', doctors: []};
-          appointment.forEach(appointment => {
-            this.doctorservice.getDoctor(appointment.doctor)
-              .subscribe(doctor => {
-                this.appointments.doctors.push(doctor);
-              });
-          });
-        });
-      },
-      errmess => this.errMess = <any>errmess);
+    .then(() => {
+      console.log("Deleted appointment");
+    });
   }
 
 }
