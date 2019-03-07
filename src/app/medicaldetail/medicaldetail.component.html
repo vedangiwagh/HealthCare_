@@ -1,0 +1,15 @@
+<div *ngIf = "medical">
+    <h1>{{medical.name}}</h1>
+    <p>{{medical.location}}</p>
+</div>
+  <div class="form-group">
+		<div class="input-group input-group-alternative">
+			<label>Medicine</label>
+			<select class="form-control" [(ngModel)] = "selectedMedicine" >
+				<option *ngFor ="let medicine of medical.medicines">{{medicine.name}}</option>
+      </select>
+      <input class="form-control" type="number" min="0" [(ngModel)] = "quantity">
+    </div>
+    <button class="btn btn-primary" (click) = "addtoCart()">Add to Cart</button>
+	</div>
+  

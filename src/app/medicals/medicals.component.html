@@ -1,0 +1,13 @@
+
+<input class="form-control" placeholder="Search" type="text" [(ngModel)] = "query">
+<div class="container-fluid">
+  <div class="row">
+      <div class="card border-primary my-3 mx-3 col-md-3" *ngFor = "let medical of medicals | filter: query" >
+          <div class="card-header">{{medical.name}}</div>
+          <div class="card-body text-primary">
+            <h5 class="card-title">{{medical.location}}</h5>
+            <button class="btn btn-primary" [routerLink]="['/medicaldetail', medical._id]">See</button>
+          </div>
+        </div>
+  </div>
+</div>

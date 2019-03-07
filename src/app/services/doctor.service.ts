@@ -10,6 +10,8 @@ import { Doctor } from '../shared/doctor';
 })
 export class DoctorService {
 
+  userId: string;
+  username: string;
   private currentUser: firebase.User = null;
   constructor(private afs: AngularFirestore,
     private authService: AuthService) { 
@@ -18,6 +20,8 @@ export class DoctorService {
         if (user) {
           // User is signed in.
           this.currentUser = user;
+          this.userId = user.uid;
+          this.username = user.email;
         } else {
           this.currentUser = null;
         }
@@ -34,6 +38,15 @@ export class DoctorService {
           return { _id, ...data };
         });
       }));
+    }
+
+    postDoctor(name : string, specialization: string, location : string, description: string, start: number, end: number)
+    {
+      if (this.userId) {
+        return this.afs.collection('doctors').doc(this.userId).set({name: name,email: this.username, specialization: specialization, location: location, description: description, start_time: start, end_time: end});
+      } else {
+        return Promise.reject(new Error('No User Logged In!'));
+      }
     }
   
     getDoctor(id: string): Observable<Doctor> {

@@ -1,0 +1,8 @@
+<div *ngFor = "let appointment of appointments">
+    <h1>{{appointment.userid}}</h1>
+    <h2>{{appointment.date}}</h2>
+    <h2>{{appointment.time}}</h2>
+    <h3>{{appointment._id}}</h3>
+    <button (click) = "cancelAppointment(appointment._id)">Cancel</button>
+  </div>
+  
