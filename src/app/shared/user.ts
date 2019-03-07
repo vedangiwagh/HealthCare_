@@ -1,8 +1,11 @@
 export class User {
     _id: string;
-    username: string;
-    firstname: string;
-    lastname: string;
-    facebookId: string;
-    admin: boolean;
+    name: string;
+    bloodgroup: string;
+    height: string;
+    weight: string;
+    contact: string;
+    gender: string;
+    email: string;
+    category: string;
 }

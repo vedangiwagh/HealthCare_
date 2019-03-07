@@ -7,6 +7,7 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { AuthService } from '../services/auth.service';
 import { Booking, BookingDoc } from '../shared/booking';
 import { throwError } from 'rxjs';
+import { ThrowStmt } from '@angular/compiler';
 @Injectable({
   providedIn: 'root'
 })
@@ -31,7 +32,21 @@ export class BookingService {
 
     getAppointments(): Observable<Booking[]> {
       if (this.userId) {
-        return this.afs.collection<Booking>('appointments', ref => ref.where('user', '==', this.userId)).snapshotChanges()
+        return this.afs.collection<Booking>('appointments', ref => ref.where('userid', '==', this.userId)).snapshotChanges()
+        .pipe(map(actions => {
+          return actions.map(action => {
+            const data = action.payload.doc.data() as Booking;
+            const _id = action.payload.doc.id;
+            return { _id, ...data };
+          });
+        }));
+      } else {
+        return throwError('No User Logged In!');
+      }
+    }
+    getDoctorAppointments(): Observable<Booking[]> {
+      if(this.userId) {
+        return this.afs.collection<Booking>('appointments', ref => ref.where('docid', '==', this.userId)).snapshotChanges()
         .pipe(map(actions => {
           return actions.map(action => {
             const data = action.payload.doc.data() as Booking;
@@ -48,9 +63,9 @@ export class BookingService {
     //     return this.afs.collection<BookingDoc>('appointments', ref => ref.where('doctor', '==', doctorid)).valueChanges();
     //   } 
     // }
-    postAppointment(id: string, date: string, time: number) {
+    postAppointment(name: string, id: string, date: string, time: number) {
       if (this.userId) {
-        return this.afs.collection('appointments').add({user: this.userId, doctor: id, date:date, time:time });
+        return this.afs.collection('appointments').add({userid: this.userId, doctor: name, docid: id, date:date, time:time });
       } else {
         return Promise.reject(new Error('No User Logged In!'));
       }

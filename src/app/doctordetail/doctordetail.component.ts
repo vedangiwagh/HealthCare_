@@ -5,7 +5,6 @@ import { switchMap } from 'rxjs/operators';
 import { Doctor } from '../shared/doctor';
 import { DoctorService } from '../services/doctor.service';
 import { BookingService } from '../services/booking.service';
-import { enableRipple } from '@syncfusion/ej2-base';
 import { from } from 'rxjs';
 
 
@@ -74,7 +73,7 @@ export class DoctordetailComponent implements OnInit {
 
   bookAppointment() {
     if (!this.appointment)
-      this.bookingservice.postAppointment(this.doctor.name,this.date,this.time)
+      this.bookingservice.postAppointment(this.doctor.name,this.doctor._id,this.date,this.time)
         .then(appointments => { console.log(appointments); this.appointment = true;})
         .catch(err => console.log('Error ', err));
   }
