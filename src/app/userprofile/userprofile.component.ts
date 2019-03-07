@@ -11,8 +11,9 @@ import { from } from 'rxjs';
 })
 export class UserprofileComponent implements OnInit {
 
-  name: string = "geet";
-  phno: string = "8551807373";
+  name: string;
+  phno: string;
+  category: string;
   gender: string = "male";
   bldgrp: string = "B+ve";
   height: string = "170cm";
@@ -20,11 +21,11 @@ export class UserprofileComponent implements OnInit {
   constructor(private usersservice : UsersService) { }
 
   ngOnInit() {
-    this.usersservice.postUser(this.name, this.phno, this.gender, this.bldgrp, this.height,  this.weight)
+    // this.usersservice.postUser(this.name, this.phno, this.gender, this.bldgrp, this.height,  this.weight)
   }
   // saveprofile()
   // {
-    
+
   // }
 
 }

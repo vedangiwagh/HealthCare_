@@ -19,6 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IntlModule } from '@progress/kendo-angular-intl';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { DoctorsviewComponent } from './doctorsview/doctorsview.component';
+import { MedicalsComponent } from './medicals/medicals.component';
+import { MedicaldetailComponent } from './medicaldetail/medicaldetail.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { DoctorsviewComponent } from './doctorsview/doctorsview.component';
     DoctordetailComponent,
     BookingComponent,
     UserprofileComponent,
-    DoctorsviewComponent
+    DoctorsviewComponent,
+    MedicalsComponent,
+    MedicaldetailComponent
   ],
   imports: [
     BrowserModule,

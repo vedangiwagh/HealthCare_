@@ -5,6 +5,8 @@ import { DoctordetailComponent } from '../doctordetail/doctordetail.component';
 import { BookingComponent } from '../booking/booking.component';
 import { UserprofileComponent } from '../userprofile/userprofile.component';
 import { DoctorsviewComponent } from '../doctorsview/doctorsview.component';
+import { MedicalsComponent } from '../medicals/medicals.component';
+import { MedicaldetailComponent } from '../medicaldetail/medicaldetail.component';
 import { from } from 'rxjs';
 
 export const routes: Routes = [
@@ -12,8 +14,10 @@ export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'appointment', component: DoctorsComponent },
   { path: 'doctordetail/:id', component: DoctordetailComponent },
+  { path: 'medicaldetail/:id', component: MedicaldetailComponent },
   { path: 'myappointments', component: BookingComponent },
   { path: 'userprofile', component: UserprofileComponent },
-  { path: 'doctorsview', component: DoctorsviewComponent }
+  { path: 'doctorsview', component: DoctorsviewComponent },
+  { path: 'buymedicines', component: MedicalsComponent}
 
 ];

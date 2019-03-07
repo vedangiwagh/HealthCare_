@@ -26,7 +26,6 @@ export class DoctordetailComponent implements OnInit {
   prev : string;
   next : string;
   errMess : string;
-  today: Date;
   appointment = false;
   constructor(private route: ActivatedRoute,
     private location: Location,
@@ -34,8 +33,6 @@ export class DoctordetailComponent implements OnInit {
     private bookingservice : BookingService) { }
 
   ngOnInit() {
-    this.today = new Date();
-    console.log(this.today);
     this.doctorservice.getDoctorIds().subscribe(doctorIds => this.doctorIds = doctorIds);
     this.route.params.pipe(switchMap((params: Params) => this.doctorservice.getDoctor(params['id'])))
     .subscribe(doctor => { this.doctor = doctor; this.setPrevNext(doctor._id); this.start_time = doctor.start_time; 
