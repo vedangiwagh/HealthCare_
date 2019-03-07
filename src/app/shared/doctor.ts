@@ -8,4 +8,6 @@ export class Doctor {
     specialization: string;
     description: string;
     comments: Comment[];
+    start_time: number;
+    end_time: number;
 }

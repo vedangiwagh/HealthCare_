@@ -9,7 +9,11 @@
 			<div class="input-group-prepend">
 				<span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
 			</div>
-			<input class="form-control datepicker" [(ngModel)] = "date" placeholder="Select date" type="text" value="06/20/2018">
+			<input class="form-control" [(ngModel)] = "date" placeholder="Select date" type="date">
+			<label for="inputState">Time</label>
+			<select class="form-control" [(ngModel)] = "time">
+				<option *ngFor ="let timing of timings">{{timing}}</option>
+			</select>
 		</div>
 	</div>
 	<button (click) = "bookAppointment()">Confirm</button>

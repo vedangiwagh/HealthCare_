@@ -1,4 +1,7 @@
-<div *ngFor = "let doctor of appointments.doctors">
-  <h1>{{doctor.name}}</h1>
-  <button (click) = "cancelAppointment(doctor._id)" routerLink ="/home">Cancel</button>
+<div *ngFor = "let appointment of appointments">
+  <h1>{{appointment.doctor}}</h1>
+  <h2>{{appointment.date}}</h2>
+  <h2>{{appointment.time}}</h2>
+  <h3>{{appointment._id}}</h3>
+  <button (click) = "cancelAppointment(appointment._id)">Cancel</button>
 </div>

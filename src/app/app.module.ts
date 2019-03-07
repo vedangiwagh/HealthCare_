@@ -14,6 +14,14 @@ import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctordetailComponent } from './doctordetail/doctordetail.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BookingComponent } from './booking/booking.component';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IntlModule } from '@progress/kendo-angular-intl';
+import { UserprofileComponent } from './userprofile/userprofile.component';
+import { DoctorsviewComponent } from './doctorsview/doctorsview.component';
+import { MedicalsComponent } from './medicals/medicals.component';
+import { MedicaldetailComponent } from './medicaldetail/medicaldetail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +29,11 @@ import { BookingComponent } from './booking/booking.component';
     HomeComponent,
     DoctorsComponent,
     DoctordetailComponent,
-    BookingComponent
+    BookingComponent,
+    UserprofileComponent,
+    DoctorsviewComponent,
+    MedicalsComponent,
+    MedicaldetailComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +43,10 @@ import { BookingComponent } from './booking/booking.component';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    DateInputsModule,
+    IntlModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

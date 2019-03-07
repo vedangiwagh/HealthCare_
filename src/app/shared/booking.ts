@@ -12,6 +12,6 @@ export class Booking {
 }
 
 export interface BookingDoc {
-    user: string;
-    doctor: string;
+    userid: string;
+    docid: string;
 }
