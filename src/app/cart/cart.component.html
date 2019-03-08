@@ -1,0 +1,8 @@
+<div class="container">
+  <div *ngFor = "let car of cart">
+    <h1>{{car.medicines}}</h1><span>{{car.quantity}}</span>
+    <h2> {{car.price}} </h2>
+    <button (click) = "deleteMedicine(car._id, car.price)">Delete</button>
+  </div>
+  <h1>{{ total }}</h1>
+</div>
