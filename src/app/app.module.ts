@@ -22,6 +22,8 @@ import { DoctorsviewComponent } from './doctorsview/doctorsview.component';
 import { MedicalsComponent } from './medicals/medicals.component';
 import { MedicaldetailComponent } from './medicaldetail/medicaldetail.component';
 import { CartComponent } from './cart/cart.component';
+import { UserdetailComponent } from './userdetail/userdetail.component';
+import { MedicalviewComponent } from './medicalview/medicalview.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { CartComponent } from './cart/cart.component';
     DoctorsviewComponent,
     MedicalsComponent,
     MedicaldetailComponent,
-    CartComponent
+    CartComponent,
+    UserdetailComponent,
+    MedicalviewComponent
   ],
   imports: [
     BrowserModule,
