@@ -1,2 +1,11 @@
-<input type="text" [(ngModel)] = "category">
-<input type="text" *ngIf = "category === 'doctor'">
+category<input type="text" [(ngModel)] = "category"><br>
+<div *ngIf = "category === 'doctor'">
+Location<input type="text" name="location"><br>
+</div>
+<div *ngIf = "category === 'patient'">
+blood grp<input type="text" name="bloodgroup" ><br>
+phone number<input type="text" name="contact"><br>
+email-id<input type="text" name="email"><br>
+</div>
+<input type="submit">
+
