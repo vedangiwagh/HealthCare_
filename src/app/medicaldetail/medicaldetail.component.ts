@@ -45,8 +45,8 @@ export class MedicaldetailComponent implements OnInit {
       .subscribe(medicines => {
         this.med = medicines;
         this.price = this.med[0].price*this.quantity; 
+        this.cartservice.postCart(this.selectedMedicine,this.price,this.quantity);
       });
     });   
-    this.cartservice.postCart(this.selectedMedicine,this.price,this.quantity);
   }
 }
