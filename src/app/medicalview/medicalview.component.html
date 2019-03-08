@@ -1,0 +1,5 @@
+<div *ngIf = "medicines">
+    <select class="form-control" [(ngModel)] = "selectedMedicine" >
+				<option *ngFor ="let medicine of medicines">{{medicine._id}}</option>
+    </select>
+</div>

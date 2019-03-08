@@ -7,7 +7,6 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { AuthService } from '../services/auth.service';
 import { Booking, BookingDoc } from '../shared/booking';
 import { throwError } from 'rxjs';
-import { ThrowStmt } from '@angular/compiler';
 @Injectable({
   providedIn: 'root'
 })
@@ -63,9 +62,9 @@ export class BookingService {
     //     return this.afs.collection<BookingDoc>('appointments', ref => ref.where('doctor', '==', doctorid)).valueChanges();
     //   } 
     // }
-    postAppointment(name: string, id: string, date: string, time: number) {
+    postAppointment(name: string, id: string, date: string, time: number, dt: string) {
       if (this.userId) {
-        return this.afs.collection('appointments').add({userid: this.userId, doctor: name, docid: id, date:date, time:time });
+        return this.afs.collection('appointments').add({userid: this.userId, doctor: name, docid: id, date:date, time:time, date_time: dt });
       } else {
         return Promise.reject(new Error('No User Logged In!'));
       }
@@ -73,7 +72,7 @@ export class BookingService {
     isAppointment(id: string): Promise<boolean> {
       const db = firebase.firestore();
       if (this.userId) {
-        return db.collection('appointments').where('user', '==', this.userId).where('doctor', '==', id).get()
+        return db.collection('appointments').where('userid', '==', this.userId).where('docid', '==', id).get()
         .then(doc => {
           return !doc.empty;
         });
@@ -81,6 +80,19 @@ export class BookingService {
         return Promise.resolve(false);
       }
     }
+    checkDatetime(id: string, dt: string): Promise<boolean>
+    {
+      const db = firebase.firestore();
+      if(this.userId) {
+        return db.collection('appointments').where('docid', '==', id).where('date_time', '==', dt).get()
+        .then(doc => {
+          return !doc.empty;
+        })
+      } else {
+        return Promise.resolve(false);
+      }
+    }
+
     deleteAppointment(id: string): Promise<void> {
       const db = firebase.firestore();
       if (this.userId) {

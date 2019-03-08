@@ -26,7 +26,9 @@ export class DoctordetailComponent implements OnInit {
   prev : string;
   next : string;
   errMess : string;
+  dt: string;
   appointment = false;
+  validator = false;
   constructor(private route: ActivatedRoute,
     private location: Location,
     private doctorservice : DoctorService,
@@ -50,10 +52,6 @@ export class DoctordetailComponent implements OnInit {
       }
       this.timings.push(this.start_time);
     };
-      this.bookingservice.isAppointment(this.doctor.name)
-      .then(value => {
-        this.appointment = value;
-      });
     },
     errmess => this.errMess = <any>errmess);
     
@@ -69,9 +67,23 @@ export class DoctordetailComponent implements OnInit {
   }
 
   bookAppointment() {
-    if (!this.appointment)
-      this.bookingservice.postAppointment(this.doctor.name,this.doctor._id,this.date,this.time)
-        .then(appointments => { console.log(appointments); this.appointment = true;})
-        .catch(err => console.log('Error ', err));
+    this.bookingservice.isAppointment(this.doctor._id)
+      .then(value => {
+        this.appointment = value;
+        if (!this.appointment)
+        {
+          this.dt = this.date + this.time.toString();
+          this.bookingservice.checkDatetime(this.doctor._id, this.dt)
+          .then(value => {
+            this.validator = value;
+            if(!this.validator)
+            {
+              this.bookingservice.postAppointment(this.doctor.name,this.doctor._id,this.date,this.time, this.dt)
+              .then(appointments => { console.log(appointments);this.appointment = true;})
+              .catch(err => console.log('Error ', err));
+            }
+          });
+        }  
+      });
   }
 }

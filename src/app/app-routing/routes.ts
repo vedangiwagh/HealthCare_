@@ -8,7 +8,9 @@ import { DoctorsviewComponent } from '../doctorsview/doctorsview.component';
 import { MedicalsComponent } from '../medicals/medicals.component';
 import { MedicaldetailComponent } from '../medicaldetail/medicaldetail.component';
 import { CartComponent } from '../cart/cart.component';
+import { UserdetailComponent } from '../userdetail/userdetail.component';
 import { from } from 'rxjs';
+import { MedicalviewComponent } from '../medicalview/medicalview.component';
 
 export const routes: Routes = [
   { path: 'home',  component: HomeComponent },
@@ -16,7 +18,9 @@ export const routes: Routes = [
   { path: 'appointment', component: DoctorsComponent },
   { path: 'doctordetail/:id', component: DoctordetailComponent },
   { path: 'medicaldetail/:id', component: MedicaldetailComponent },
+  { path: 'userdetail/:id', component: UserdetailComponent},
   { path: 'myappointments', component: BookingComponent },
+  { path: 'managemedicines', component: MedicalviewComponent },
   { path: 'userprofile', component: UserprofileComponent },
   { path: 'doctorsview', component: DoctorsviewComponent },
   { path: 'buymedicines', component: MedicalsComponent},
