@@ -7,6 +7,7 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { AuthService } from '../services/auth.service';
 import { Medical } from '../shared/medical';
 import { Medicines } from '../shared/medicines';
+import { Medicine } from '../shared/medicine';
 @Injectable({
   providedIn: 'root'
 })
@@ -38,4 +39,37 @@ export class MedicineService {
         });
       }));
     }
+
+    getMedicine(id: string): Observable<Medicines> {
+      return this.afs.doc<Medicines>('medicines/' + id).snapshotChanges()
+      .pipe(map(action => {
+        const data = action.payload.data() as Medicines;
+        const _id = action.payload.id;
+        return { _id, ...data };
+      }));
+    }
+
+    isMedicine(id: string): Promise<boolean> {
+      const db = firebase.firestore();
+      if (this.userId) {
+        return db.collection('medicines').doc(id).get()
+        .then(doc => {
+          return Promise.resolve(true);
+        });
+      } else {
+        return Promise.resolve(false);
+      }
+    }
+
+    postMedicine(id: string, description: string) {
+      if (this.userId) {
+        return this.afs.collection('medicines').doc(id).set({description: description});
+      }
+      else {
+        return Promise.reject(new Error('No User Logged In!'));
+      }
+    }
+
+
+
 }
