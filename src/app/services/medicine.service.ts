@@ -54,7 +54,9 @@ export class MedicineService {
       if (this.userId) {
         return db.collection('medicines').doc(id).get()
         .then(doc => {
-          return Promise.resolve(true);
+          if(doc.exists) {
+            return Promise.resolve(true);
+          }
         });
       } else {
         return Promise.resolve(false);

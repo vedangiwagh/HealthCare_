@@ -67,6 +67,7 @@ export class MedicalviewComponent implements OnInit {
     this.medicineservice.isMedicine(id)
     .then(value => {
       this.medic1 = value;
+      console.log(this.medic1);
       if(!this.medic1)
       {
         this.medicineservice.postMedicine(id, description);
