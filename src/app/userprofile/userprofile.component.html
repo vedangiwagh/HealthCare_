@@ -1,11 +1,37 @@
-category<input type="text" [(ngModel)] = "category"><br>
+
+	
+Category<br>
+<input type="radio" [(ngModel)] = "category" value="doctor">Doctor<br>
+<input type="radio" [(ngModel)] = "category" value="patient">Patient<br>
+
 <div *ngIf = "category === 'doctor'">
 Location<input type="text" name="location"><br>
 </div>
 <div *ngIf = "category === 'patient'">
-blood grp<input type="text" name="bloodgroup" ><br>
-phone number<input type="text" name="contact"><br>
-email-id<input type="text" name="email"><br>
+	Name<input type="text" name="name"><br>
+Gender<select name="gender">
+		<option value="male">Male</option>
+		<option value="female">Female</option>
+		<option value="other">Other</option>
+	  </select><br>
+Height<input type="text" name="height" ><br>
+Weight<select>
+	    <option value="15">10-20</option>
+	    <option value="25">20-30</option>
+	    <option value="35">30-40</option>
+	    <option value="45">40-50</option>
+	    <option value="55">50-60</option>
+	    <option value="65">60-70</option>
+	    <option value="75">70-80</option>
+        <option value="85">80-90</option>
+	    <option value="95">90-100</option>
+	    <option value="105">100-110</option>
+	    <option value="115">110-120</option>
+	    <option value="0">Other</option>
+     </select><br>
+Blood grp<input type="text" name="bloodgroup"><br>
+Phone number<input type="text" name="contact" maxlength="10"><br>
+Email-id<input type="email" name="email"><br>
 </div>
 <input type="submit">
 
