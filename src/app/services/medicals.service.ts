@@ -63,4 +63,49 @@ export class MedicalsService {
       //   })[0];
       // }));
     }
+
+    postMedicine(medicine: string, description: string, price: number)
+    {
+      return this.afs.collection('medicals').doc(this.userId).collection('medicines').add({name : medicine, description: description, price: price})
+    }
+
+    // deleteMedicine(id: string): Promise<void> {
+    //   const db = firebase.firestore();
+    //   if (this.userId) {
+    //       return db.doc('medicals/' + this.userId + '/medicines/' +  ).delete();
+    //   } else {
+    //     return Promise.reject(new Error('No User Logged In!'));
+    //   }
+    // }
+
+    getMedicin(id: string): Observable<Medicine> {
+      return this.afs.collection('medicals').doc(this.userId).collection('medicines', ref => ref.where('name', '==', id)).snapshotChanges()
+      .pipe(map(actions => {
+        return actions.map(action => {
+          const data = action.payload.doc.data() as Medicine;
+          const _id = action.payload.doc.id;
+          return { _id, ...data };
+          })[0];
+        }));
+    }
+    deleteMedicine(id: string): Promise<void> {
+      const db = firebase.firestore();
+      if (this.userId) {
+          return db.doc('medicals/' + this.userId + '/medicines/' +  id).delete();
+      } else {
+        return Promise.reject(new Error('No User Logged In!'));
+      }
+    }
+
+    isMedicine(id: string): Promise<boolean> {
+      const db = firebase.firestore();
+      if (this.userId) {
+        return db.collection('medicals').doc(this.userId).collection('medicines').where('name', '==', id).get()
+        .then(doc => {
+          return !doc.empty;
+        });
+      } else {
+        return Promise.resolve(false);
+      }
+    }
 }

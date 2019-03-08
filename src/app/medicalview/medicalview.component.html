@@ -2,4 +2,23 @@
     <select class="form-control" [(ngModel)] = "selectedMedicine" >
 				<option *ngFor ="let medicine of medicines">{{medicine._id}}</option>
     </select>
+    Price
+    <input type="number" [(ngModel)] = "price" >
+    <button (click) = "addMedicine(selectedMedicine, price)">Add</button>
+</div>
+
+<div *ngIf = "med">
+  Your database
+  <div *ngFor = "let medicine of med">
+     <span>{{medicine.name}} </span>
+     <span>{{medicine.price}}</span>
+     <button (click) ="deleteMedicine(medicine.name)">Delete</button>
+  </div>
+</div>
+
+<div>
+  <h4>Add to Our Database</h4>
+  Name<input type="text" [(ngModel)] = "name">
+  Description <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write Description" [(ngModel)] = "description"></textarea>
+  <button (click) = "addMed(name, description)">Add</button>
 </div>
