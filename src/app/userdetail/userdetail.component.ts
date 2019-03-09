@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/users.service';
-import { User } from '../shared/user';
+import { PatientsService } from '../services/patients.service';
+import { Patient } from '../shared/patient';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
@@ -12,19 +13,20 @@ import { AuthService } from '../services/auth.service';
 })
 export class UserdetailComponent implements OnInit {
 
-  user: User;
+  patient: Patient;
   user_category: string;
   constructor(private route: ActivatedRoute,
     private authService: AuthService,
     private location: Location,
-    private usersservice : UsersService) { }
+    private usersservice : UsersService,
+    private patientservice : PatientsService) { }
 
   ngOnInit() {
     this.authService.getAuthState()
         .subscribe((user) => {
         if (user) {
           // User is signed in.
-          this.usersservice.getUser(user.uid)
+          this.usersservice.getUser()
           .subscribe((user) => {
           if(user) {
             this.user_category = user.category;
@@ -35,9 +37,9 @@ export class UserdetailComponent implements OnInit {
         });
       }
       });
-    this.route.params.pipe(switchMap((params: Params) => this.usersservice.getUser(params['id'])))
+    this.route.params.pipe(switchMap((params: Params) => this.patientservice.getPatient(params['id'])))
     .subscribe(user => {
-      this.user = user;
+      this.patient = user;
     })
   }
 

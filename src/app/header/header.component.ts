@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
         .subscribe((user) => {
         if (user) {
           // User is signed in.
-          this.usersservice.getUser(user.uid)
+          this.usersservice.getUser()
           .subscribe((user) => {
           if(user) {
             this.user_category = user.category;

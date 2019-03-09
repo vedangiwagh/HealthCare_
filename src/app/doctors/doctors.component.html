@@ -2,11 +2,11 @@
 <input class="form-control" placeholder="Search" type="text" [(ngModel)] = "query">
 <div class="container-fluid">
   <div class="row">
-      <div class="card border-primary my-3 mx-3 col-md-3" *ngFor = "let doctor of doctors | filter: query" >
+      <div class="card border-primary my-3 mx-3 col-md-2" *ngFor = "let doctor of doctors | filter: query" >
           <div class="card-header">{{doctor.name}}</div>
           <div class="card-body text-primary">
-            <h5 class="card-title">{{doctor.specialization}}&nbsp; &nbsp; -- {{doctor.location}}</h5>
-            <p class="card-text">{{doctor.description}}</p>
+            <h5 class="card-title">{{doctor.specialization}}</h5>
+            <p class="card-text">{{doctor.location}}</p>
             <button class="btn btn-primary" [routerLink]="['/doctordetail', doctor._id]">Book</button>
           </div>
         </div>

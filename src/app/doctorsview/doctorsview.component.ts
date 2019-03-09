@@ -33,11 +33,5 @@ export class DoctorsviewComponent implements OnInit {
     });
   }
 
-  viewPatient(id: string) {
-    this.usersservice.getUser(id)
-    .subscribe(user => {
-      this.user = user;
-    })
-  }
 
 }

@@ -29,6 +29,19 @@ export class DoctorService {
     }
 
 
+    isDoctor(): Promise<boolean> {
+      const db = firebase.firestore();
+      if (this.userId) {
+        return db.collection('doctors').doc(this.userId).get()
+        .then(doc => {
+          if(doc.exists) {
+            return Promise.resolve(true);
+          }
+        });
+      } else {
+        return Promise.resolve(false);
+      }
+    }
     getDoctors(): Observable<Doctor[]> {
       return this.afs.collection<Doctor>('doctors').snapshotChanges()
       .pipe(map(actions => {
@@ -40,10 +53,19 @@ export class DoctorService {
       }));
     }
 
-    postDoctor(name : string, specialization: string, location : string, description: string, start: number, end: number)
+    putDoctor(name : string, specialization: string, location : string, description: string, gender: string, start: number, end: number)
     {
       if (this.userId) {
-        return this.afs.collection('doctors').doc(this.userId).set({name: name,email: this.username, specialization: specialization, location: location, description: description, start_time: start, end_time: end});
+        return this.afs.collection('doctors').doc(this.userId).update({name: name,email: this.username, specialization: specialization, location: location,gender:gender, description: description, start_time: start, end_time: end});
+      } else {
+        return Promise.reject(new Error('No User Logged In!'));
+      }
+    }
+
+    postDoctor(name : string, specialization: string, location : string,gender: string, description: string, start: number, end: number)
+    {
+      if (this.userId) {
+        return this.afs.collection('doctors').doc(this.userId).set({name: name,email: this.username, specialization: specialization, location: location,gender: gender, description: description, start_time: start, end_time: end});
       } else {
         return Promise.reject(new Error('No User Logged In!'));
       }

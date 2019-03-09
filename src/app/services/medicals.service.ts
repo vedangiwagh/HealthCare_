@@ -63,7 +63,31 @@ export class MedicalsService {
       //   })[0];
       // }));
     }
+    putMedical(name: string, location: string, ph: number) {
+      if(this.userId) {
+        return this.afs.collection('medicals').doc(this.userId).update({name: name, email: this.username, location:location, contact: ph});
+      }
+    }
 
+    postMedical(name: string, location: string, ph: number) {
+      if(this.userId) {
+        return this.afs.collection('medicals').doc(this.userId).set({name: name, email: this.username, location:location, contact: ph});
+      }
+    }
+
+    isMedical(): Promise<boolean> {
+      const db = firebase.firestore();
+      if (this.userId) {
+        return db.collection('medicals').doc(this.userId).get()
+        .then(doc => {
+          if(doc.exists) {
+            return Promise.resolve(true);
+          }
+        });
+      } else {
+        return Promise.resolve(false);
+      }
+    }
     postMedicine(medicine: string, description: string, price: number)
     {
       return this.afs.collection('medicals').doc(this.userId).collection('medicines').add({name : medicine, description: description, price: price})
