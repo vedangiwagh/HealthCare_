@@ -1,88 +1,72 @@
-<div class="row cate">
+<div class="back container-fluid">
+	<div class="container-fluid">
+	<div class="h"><h2>PROFILE</h2></div>
+	
+</div>
+<div class="container">
+	<div class="row cate">
     <div class="col-md-4">Category</div><br>
-    <div class="col-md-4"><input type="radio" [(ngModel)] = "category" value="doctor">Doctor<br></div>
-    <div class="col-md-4"><input type="radio" [(ngModel)] = "category" value="patient">Patient<br></div>
-  </div>
-  <div *ngIf = "category === 'doctor'" class="a">
-    <div class="row">
-    <div class="col-md-3">Location</div>
-    <div class="col-md-9"><input type="text" name="location" required><br></div>
-    </div>
-    <div class="row">
-    <div class="col-md-3 t">Name</div>
-    <div class="col-md-9"><input type="text" name="name"required><br></div>
-    </div>
-  
-    <div class="row">
-        <div class="col-md-3 t">Gender</div>
-          <div class="col-md-9">
-           <select name="gender" required>
-      <option value="male">Male</option>
-      <option value="female">Female</option>
-      <option value="other">Other</option>
+    <div class="col-md-4"><div class="custom-control custom-radio">
+  		<input name="doctor" class="custom-control-input" id="Radio1" type="radio" [(ngModel)] = "category" value="doctor">
+  		<label class="custom-control-label" for="Radio1">Doctor</label>
+	</div><br></div>
+    <div class="col-md-4">
+    	<div class="custom-control custom-radio">
+  		<input name="patient" class="custom-control-input" type="radio" [(ngModel)] = "category"value="patient" id="Radio2"checked="">
+  		<label class="custom-control-label" for="Radio2">Patient</label>
+		</div><br>
+	</div>
+    </div>  
+</div>
+<div class="container">
+  <div *ngIf = "category === 'doctor'"class="form1">
+    
+    <input type="text" name="name" placeholder="Name">
+        <select name="gender" class="custom-select  mb-3">
+        	<option>Gender</option>
+      		<option value="male">Male</option>
+      		<option value="female">Female</option>
+     		<option value="other">Other</option>
         </select><br>
-        </div>
-    </div>
+        <input type="text" name="location" placeholder="Location"><br>
+    <input type="text" name="contact" maxlength="10" placeholder="Phone number"><br>
+</div>
+</div>
+<div class="container">
+  <div *ngIf = "category === 'patient'" class="form1">
+ 
+    <input type="text" name="name" placeholder="Name">
     <div class="row">
-      <div class="col-md-3 t">Phone number</div>
-      <div class="col-md-9"><input type="text" name="contact" maxlength="10" required><br></div>
-    </div>
-    <div class="row">
-      <div class="col-md-3 t">Email-id</div>
-      <div class="col-md-9"><input type="email" name="email"required><br></div>
-    </div>
-  </div>
-  <div *ngIf = "category === 'patient'"class="a">
-  
-    <div class="row">
-    <div class="col-md-3 t">Name</div>
-    <div class="col-md-9"><input type="text" name="name"required><br></div>
-    </div>
-  
-    <div class="row">
-        <div class="col-md-3 t">Gender</div>
-          <div class="col-md-9">
-           <select name="gender"required>
-      <option value="male">Male</option>
-      <option value="female">Female</option>
-      <option value="other">Other</option>
+        <div class="col-md-6">
+        <select name="gender" class="custom-select mb-3">
+           	<option>Gender</option>
+      		<option value="male">Male</option>
+      		<option value="female">Female</option>
+      		<option value="other">Other</option>
         </select><br>
-        </div>
+   </div>
+   <div class="col-md-6">
+        <select name="weight"class="custom-select mb-3">
+        	<option>Weight</option>
+          	<option value="15">10-20</option>
+          	<option value="25">20-30</option>
+          	<option value="35">30-40</option>
+          	<option value="45">40-50</option>
+          	<option value="55">50-60</option>
+          	<option value="65">60-70</option>
+          	<option value="75">70-80</option>
+          	<option value="85">80-90</option>
+          	<option value="95">90-100</option>
+          	<option value="105">100-110</option>
+          	<option value="115">110-120</option>
+          	<option value="0">Other</option>
+        </select><br>
     </div>
-    <div class="row">
-        <div class="col-md-3 t">Height</div>
-        <div class="col-md-9"><input type="text" name="height" required><br></div>
-      </div>
-      <div class="row">
-          <div class="col-md-3 t">Weight</div>
-      <div class="col-md-9">
-        <select name="weight" required>
-          <option value="15">10-20</option>
-          <option value="25">20-30</option>
-          <option value="35">30-40</option>
-          <option value="45">40-50</option>
-          <option value="55">50-60</option>
-          <option value="65">60-70</option>
-          <option value="75">70-80</option>
-            <option value="85">80-90</option>
-          <option value="95">90-100</option>
-          <option value="105">100-110</option>
-          <option value="115">110-120</option>
-          <option value="0">Other</option>
-           </select><br>
-       </div>
     </div>
-     <div class="row">
-      <div class="col-md-3 t">Blood grp</div>
-      <div class="col-md-9"><input type="text" name="bloodgroup" required><br></div>
-    </div>
-    <div class="row">
-      <div class="col-md-3 t">Phone number</div>
-      <div class="col-md-9"><input type="text" name="contact" maxlength="10" required><br></div>
-    </div>
-    <div class="row">
-      <div class="col-md-3 t">Email-id</div>
-      <div class="col-md-9"><input type="email" name="email" required><br></div>
-    </div>
-  </div>
+    <input type="text" name="contact" maxlength="10" placeholder="Phone number"><br>
+    <input type="text" name="height" placeholder="Height(cm)"><br>
+    <input type="text" name="bloodgroup" placeholder="Bloodgroup
+    "><br>
+    </div> 
   <button type="submit" class="btn btn-primary">SUBMIT</button>
+</div>
