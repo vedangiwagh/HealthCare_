@@ -27,7 +27,7 @@ export class BookingComponent implements OnInit {
   cancelAppointment(id: string) {
     this.bookingservice.deleteAppointment(id)
     .then(() => {
-      console.log("Deleted appointment");
+      alert("Deleted appointment" + id);
     });
   }
 

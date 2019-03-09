@@ -54,9 +54,9 @@ export class UsersService {
       }
     }
 
-    postMed(category:string, name:string,location: string, ph: number) {
+    postMed(category:string, name:string,location: string) {
       if (this.userId) {
-        return this.afs.collection('users').doc(this.userId).set({name: name,email: this.username, category: category, contact: ph});
+        return this.afs.collection('users').doc(this.userId).set({name: name,email: this.username, category: category});
       }
       else {
         return Promise.reject(new Error('No User Logged In!'));

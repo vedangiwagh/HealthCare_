@@ -105,7 +105,7 @@ export class UserprofileComponent implements OnInit {
     }
     else if(this.category == 'medical')
     {
-      this.usersservice.postMed(this.category, this.name, this.location,this.phno);
+      this.usersservice.postMed(this.category, this.name, this.location);
       this.medicalservice.isMedical()
       .then(value => {
         if(!value)
