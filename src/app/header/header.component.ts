@@ -14,7 +14,8 @@ export class HeaderComponent implements OnInit {
   user1 = {username: '', password: '', remember: false};
   users : User;
   user_category: string;
-  username : string = undefined;
+  username : string;
+  userna : string;
   usern : boolean = false;
   userid: string;
   errMess: string;
@@ -36,27 +37,19 @@ export class HeaderComponent implements OnInit {
           }
         });
           this.username = user.displayName ? user.displayName : user.email;
+          this.userna = this.username;
           this.usern = true;
-          console.log('Logged In ', this.username);
+          console.log('Welcome ' + this.username);
         } else {
-          console.log('Not Logged In');
+          console.log('Wrong Password or Username');
           this.usern = false;
           this.username = undefined;
         }
       });
-      // this.usersservice.getUser(this.userid)
-      // .subscribe((user) => {
-      //   if(user) {
-      //     this.user_category = user.category;
-      //   }
-      //   else{
-      //     console.log('Not defined');
-      //   }
-      // });
   }
   onSubmitlogin() {
     console.log('User: ', this.user);
-    this.authService.logIn(this.user);
+    this.authService.logIn(this.user)
   }
   onSubmitsign() {
     console.log('User: ', this.user1);
