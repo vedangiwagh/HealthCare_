@@ -3,24 +3,17 @@
 	<div class="h"><h1>PROFILE</h1></div>
 	
 </div>
-<div class="container" *ngIf = "!this.category">
+<div class="container">
 	<div class="row cate">
     <div class="col-md-3">Category</div><br>
     <div class="col-md-3"><div class="custom-control custom-radio">
   		<input name="doctor" class="custom-control-input" id="Radio1" type="radio" [(ngModel)] = "category" value="doctor">
   		<label class="custom-control-label" for="Radio1">Doctor</label>
-             </div><br></div>
 	</div><br></div>
     <div class="col-md-3">
     	<div class="custom-control custom-radio">
-  		<input name="patient" class="custom-control-input" type="radio" [(ngModel)] = "category" value="patient" id="Radio2"checked="">
+  		<input name="patient" class="custom-control-input" type="radio" [(ngModel)] = "category"value="patient" id="Radio2"checked="">
   		<label class="custom-control-label" for="Radio2">Patient</label>
-		</div><br>
-		</div>
-		<div class="col-md-3">
-				<div class="custom-control custom-radio">
-				<input name="patient" class="custom-control-input" type="radio" [(ngModel)] = "category" value="medical" id="Radio3"checked="">
-				<label class="custom-control-label" for="Radio3">Medical</label>
 		</div><br>
 	</div>
 	<div class="col-md-3">
@@ -32,99 +25,35 @@
     </div>  
 </div>
 <div class="container">
-
-  <div *ngIf = "category === 'doctor'" class="form1">
-
 <div *ngIf = "category === 'doctor'"class="form1">
-
     
-    <input type="text" name="name" placeholder="Name" [(ngModel)] = "name">
-      <select name="gender" class="custom-select  mb-3" [(ngModel)] = "gender">
-        <option>Gender</option>
-      	<option value="Male">Male</option>
-      	<option value="Female">Female</option>
-     		<option value="Other">Other</option>
-      </select><br>
-    <input type="text" name="location" placeholder="Location" [(ngModel)] = "location"><br>
-		<input type="text" name="specialization" placeholder="Specialization" [(ngModel)] = "specialization"><br>
-		<textarea class="form-control mb-3" id="exampleFormControlTextarea1" rows="3" placeholder="Description" [(ngModel)] = "description"></textarea>
-		<div class="col-xs-6">
-        <select name="start_time" class="custom-select mb-3" [(ngModel)] = "start_time"> 
-        		<option>Start Time</option>
-          	<option value=0000>0000</option>
-          	<option value=0100>0100</option>
-          	<option value=0200>0200</option>
-          	<option value=0300>0300</option>
-          	<option value=0400>0400</option>
-          	<option value=0500>0500</option>
-          	<option value=0600>0600</option>
-          	<option value=0700>0700</option>
-          	<option value=0800>0800</option>
-          	<option value=0900>0900</option>
-          	<option value=1000>1000</option>
-						<option value=1100>1100</option>
-						<option value=1200>1200</option>
-          	<option value=1300>1300</option>
-          	<option value=1400>1400</option>
-          	<option value=1500>1500</option>
-          	<option value=1600>1600</option>
-          	<option value=1700>1700</option>
-          	<option value=1800>1800</option>
-          	<option value=1900>1900</option>
-          	<option value=2000>2000</option>
-          	<option value=2100>2100</option>
-          	<option value=2200>2200</option>
-						<option value=2300>2300</option>
+    <input type="text" name="name" placeholder="Name">
+        <select name="gender" class="custom-select  mb-3">
+        	<option>Gender</option>
+      		<option value="male">Male</option>
+      		<option value="female">Female</option>
+     		<option value="other">Other</option>
         </select><br>
-		</div>
-		<div class="col-xs-6">
-        <select name="end_time" class="custom-select mb-3" [(ngModel)] = "end_time"> 
-        	<option>End Time</option>
-					<option value=0000>0000</option>
-					<option value=0100>0100</option>
-					<option value=0200>0200</option>
-					<option value=0300>0300</option>
-					<option value=0400>0400</option>
-					<option value=0500>0500</option>
-					<option value=0600>0600</option>
-					<option value=0700>0700</option>
-					<option value=0800>0800</option>
-					<option value=0900>0900</option>
-					<option value=1000>1000</option>
-					<option value=1100>1100</option>
-					<option value=1200>1200</option>
-					<option value=1300>1300</option>
-					<option value=1400>1400</option>
-					<option value=1500>1500</option>
-					<option value=1600>1600</option>
-					<option value=1700>1700</option>
-					<option value=1800>1800</option>
-					<option value=1900>1900</option>
-					<option value=2000>2000</option>
-					<option value=2100>2100</option>
-					<option value=2200>2200</option>
-					<option value=2300>2300</option>
-        </select><br>
-    </div>
+        <input type="text" name="location" placeholder="Location"><br>
+    <input type="text" name="contact" maxlength="10" placeholder="Phone number"><br>
 </div>
 </div>
 <div class="container">
   <div *ngIf = "category === 'patient'" class="form1">
  
-		<input type="text" name="name" placeholder="Name" [(ngModel)] = "name">
-		<input type="number" name="age" placeholder="Age" [(ngModel)] = "age" min=0>
+    <input type="text" name="name" placeholder="Name">
     <div class="row">
         <div class="col-md-6">
-        <select name="gender" class="custom-select mb-3" [(ngModel)] = "gender">
-          <option>Gender</option>
-      		<option value="Male">Male</option>
-      		<option value="Female">Female</option>
-      		<option value="Other">Other</option>
+        <select name="gender" class="custom-select mb-3">
+           	<option>Gender</option>
+      		<option value="male">Male</option>
+      		<option value="female">Female</option>
+      		<option value="other">Other</option>
         </select><br>
-	 </div>
+   </div>
    <div class="col-md-6">
-        <select name="weight"class="custom-select mb-3" [(ngModel)] = "weight"> 
-        	<option value="5">Weight</option>
+        <select name="weight"class="custom-select mb-3">
+        	<option>Weight</option>
           	<option value="15">10-20</option>
           	<option value="25">20-30</option>
           	<option value="35">30-40</option>
@@ -140,23 +69,11 @@
         </select><br>
     </div>
     </div>
-    <input type="number" name="contact" maxlength="10" placeholder="Phone number" [(ngModel)] = "phno"><br>
-    <input type="text" name="height" placeholder="Height(cm)" [(ngModel)] = "height"><br>
-    <input type="text" name="bloodgroup" placeholder="Bloodgroup" [(ngModel)] = "bldgrp"><br>
+    <input type="text" name="contact" maxlength="10" placeholder="Phone number"><br>
+    <input type="text" name="height" placeholder="Height(cm)"><br>
+    <input type="text" name="bloodgroup" placeholder="Bloodgroup
+    "><br>
     </div> 
-
-</div>
-
-
-<div class="container">
-		<div *ngIf = "category === 'medical'" class="form1">
-			<input type="text" name="name" placeholder="Name" [(ngModel)] = "name">
-			<input type="number" name="contact" maxlength="10" placeholder="Phone number" [(ngModel)] = "phno"><br>
-			<input type="text" name="location" placeholder="Location" [(ngModel)] = "location"><br>
-			</div> 
-		<button type="submit" class="btn btn-primary" (click) = "saveprofile()">SUBMIT</button>
-	</div>
-
 <div *ngIf = "category === 'medical'"class="form1">
     
     <input type="text" name="name" placeholder="Name">
@@ -171,4 +88,3 @@
 </div>
   <button type="submit" class="btn btn-primary">SUBMIT</button>
 </div>
-
