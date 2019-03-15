@@ -44,7 +44,7 @@
                 </li>
                 <li class="nav-item" *ngIf = "user_category === 'medical'">
                         <a class="nav-link nav-link-icon" routerLink = "/managemedicines">
-                            <span class="nav-link-inner--text">Manage Medicineds</span>
+                            <span class="nav-link-inner--text">Manage Medicines</span>
                         </a>
                 </li>
               <li class="nav-item dropdown" *ngIf = "user_category !== 'medical'">
@@ -74,7 +74,7 @@
             </li>
             <li class="nav-item" *ngIf="usern">
               <a class="nav-link nav-link-icon" (click)="logOut()" routerLink = "/home" onclick="window.location.reload()">
-                  <span class="nav-link-inner--text">{{username}}</span>
+                  <span class="nav-link-inner--text">{{userna}}</span>
                   <span class="nav-link-inner--text">Logout</span>
               </a>
             </li>
@@ -174,7 +174,7 @@
                         <label class="custom-control-label" for=" customCheckSignup"><span style="color:black">Remember me</span></label>
                     </div>
                     <div class="text-center">
-                        <button type="button" data-toggle="modal" data-target="#modal-form1" (click) = "onSubmitsign()" class="btn btn-primary my-4">Sign up</button>
+                        <button type="button" data-toggle="modal" data-target="#modal-form1" (click) = "onSubmitsign()" class="btn btn-primary my-4" routerLink = "/userprofile">Sign up</button>
                     </div>
                 </form>
             </div>

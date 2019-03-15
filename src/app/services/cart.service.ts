@@ -63,6 +63,18 @@ export class CartService {
     }
   }
 
+  isMedicine(id: string): Promise<boolean> {
+    const db = firebase.firestore();
+    if (this.userId) {
+      return db.collection('users').doc(this.userId).collection('cart').where('medicines', '==', id).get()
+      .then(doc => {
+        return !doc.empty;
+      });
+    } else {
+      return Promise.resolve(false);
+    }
+  }
+
 
 
 }

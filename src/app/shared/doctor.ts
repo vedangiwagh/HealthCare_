@@ -10,4 +10,5 @@ export class Doctor {
     comments: Comment[];
     start_time: number;
     end_time: number;
+    gender: string;
 }

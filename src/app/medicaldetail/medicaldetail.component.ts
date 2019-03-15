@@ -38,15 +38,26 @@ export class MedicaldetailComponent implements OnInit {
   }
 
   addtoCart(){
-    this.route.params.pipe(switchMap((params: Params) => this.medicalsservice.getMedical(params['id'])))
-    .subscribe(medical => { 
-      this.medical1 = medical;
-      this.medicalsservice.getMedicine(this.medical1._id, this.selectedMedicine)
-      .subscribe(medicines => {
-        this.med = medicines;
-        this.price = this.med[0].price*this.quantity; 
-        this.cartservice.postCart(this.selectedMedicine,this.price,this.quantity);
+    this.cartservice.isMedicine(this.selectedMedicine)
+      .then(value => {
+        console.log(value);
+        if(!value)
+        {
+          this.route.params.pipe(switchMap((params: Params) => this.medicalsservice.getMedical(params['id'])))
+          .subscribe(medical => { 
+            this.medical1 = medical;
+            this.medicalsservice.getMedicine(this.medical1._id, this.selectedMedicine)
+            .subscribe(medicines => {
+              this.med = medicines;
+              this.price = this.med[0].price*this.quantity;   
+              this.cartservice.postCart(this.selectedMedicine,this.price,this.quantity);   
+            });
+          });   
+        }
+        else
+        {
+          alert("Medicine already exists in cart");
+        }
       });
-    });   
   }
 }
