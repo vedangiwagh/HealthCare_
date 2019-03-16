@@ -78,6 +78,7 @@ export class DoctordetailComponent implements OnInit {
             this.validator = value;
             if(!this.validator)
             {
+              this.time = +this.time;
               this.bookingservice.postAppointment(this.doctor.name,this.doctor._id,this.date,this.time, this.dt)
               .then(appointments => { console.log(appointments);this.appointment = true;})
               .catch(err => console.log('Error ', err));

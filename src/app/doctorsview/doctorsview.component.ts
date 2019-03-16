@@ -34,4 +34,5 @@ export class DoctorsviewComponent implements OnInit {
   }
 
 
+
 }

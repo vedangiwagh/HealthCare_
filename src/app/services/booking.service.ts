@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import * as firebase from 'firebase/app';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AuthService } from '../services/auth.service';
+import { PatientsService } from '../services/patients.service';
 import { Booking, BookingDoc } from '../shared/booking';
 import { throwError } from 'rxjs';
 @Injectable({
@@ -12,21 +13,35 @@ import { throwError } from 'rxjs';
 })
 export class BookingService {
 
+
   userId: string = undefined;
   username: string = undefined;
   private currentUser: firebase.User = null;
   constructor(private afs: AngularFirestore,
-    private authService: AuthService) { 
+    private authService: AuthService,
+    private patientservice: PatientsService) { 
       this.authService.getAuthState()
       .subscribe((user) => {
         if (user) {
           // User is signed in.
           this.userId = user.uid;
-          this.username = user.email;
+          this.patientservice.getPatient(this.userId)
+          .subscribe(patient => {
+            this.username = patient.name;
+          })
         } else {
           this.userId = undefined;
         }
       });
+
+
+    }
+
+    getAppointment(id): Observable<any> {
+      if(this.userId)
+      {
+        return this.afs.doc('appointments/' + id).valueChanges();
+      }
     }
 
     getAppointments(): Observable<Booking[]> {
@@ -57,14 +72,31 @@ export class BookingService {
         return throwError('No User Logged In!');
       }
     }
-    // getAppointment(doctorid): Observable<BookingDoc[]> {
+    // getAppointment(doctorid): Observable<Booking> {
     //   if (this.userId) {
-    //     return this.afs.collection<BookingDoc>('appointments', ref => ref.where('doctor', '==', doctorid)).valueChanges();
+    //     return this.afs.collection<Booking>('appointments', ref => ref.where('doctor', '==', doctorid)).snapshotChanges()
+    //     .pipe(map(actions => {
+    //       return actions.map(action => {
+    //         const data = action.payload.doc.data() as Booking;
+    //         const _id = action.payload.doc.id;
+    //         return { _id, ...data };
+    //       });
+    //     }));
+    //   } else {
+    //     return throwError('No User Logged In!');
+    //   }
     //   } 
     // }
+
+      // getAppointment(id): Observable <Booking> {
+      //   if(this.userId)
+      //   {
+      //     return this.afs.doc('appointments)
+      //   }
+      // }
     postAppointment(name: string, id: string, date: string, time: number, dt: string) {
       if (this.userId) {
-        return this.afs.collection('appointments').add({userid: this.userId, doctor: name, docid: id, date:date, time:time, date_time: dt });
+        return this.afs.collection('appointments').add({userid: this.userId, doctor: name, docid: id, date:date, time:time, date_time: dt, user: this.username });
       } else {
         return Promise.reject(new Error('No User Logged In!'));
       }

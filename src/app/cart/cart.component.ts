@@ -33,7 +33,7 @@ export class CartComponent implements OnInit {
         this.total = this.total + cart.price;
       })
     });
-      alert("Deleted Medicine " + id)
+      console.log("Deleted Medicine " + id);
     })
   }
 
