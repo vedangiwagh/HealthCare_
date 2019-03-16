@@ -1,4 +1,4 @@
-<div *ngFor = "let appointment of appointments">
+<!-- <div *ngFor = "let appointment of appointments">
     <h1>{{appointment.user}}</h1>
     <h2>{{appointment.date}}</h2>
     <h2>{{appointment.time}}</h2>
@@ -6,5 +6,20 @@
     <button [routerLink]="['/userdetail', appointment.userid]">View Patient's Info</button>
     <button (click) = "cancelAppointment(appointment._id)">Cancel</button>
     <button [routerLink]="['/appointment', appointment._id]">Start</button>
-  </div>
-  
+  </div> -->
+<div class="container-fluid">
+  	<div class="row">
+  		<div class="card col-md-3 mx-5" *ngFor = "let appointment of appointments">
+			<div class="card-header"><h4 class="card-title">{{appointment.user}}<button class="btn btn-info" [routerLink]="['/userdetail', appointment.userid]" style="float: right;">Patient's Profile</button></h4></div>
+  			<div class="card-body">
+   			 <h5>Date:{{appointment.date}}</h5>
+    		 <h5>Time:{{appointment.time}}</h5>
+    		 <h5>Token id:{{appointment._id}}</h5>
+  			</div>
+  			<div class="card-footer">
+    			<button class="btn btn-success"[routerLink]="['/appointment', appointment._id]">Prescribe</button>
+    			<button class="btn btn-danger"(click) = "cancelAppointment(appointment._id)" style="float: right;">Cancel</button>
+   			</div>
+  		</div>
+	</div>
+</div>
