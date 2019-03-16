@@ -1,0 +1,21 @@
+table
+{
+	border-left: 1px solid black;
+	box-shadow: 3px 7px 1px 1px;
+	border-radius: 5px;
+	margin-top: 2%;
+}
+td,tr,th
+{
+	border-collapse: collapse;
+}
+.he
+{
+	text-align: center;
+}
+.container
+{
+ border: 1px solid grey;
+ border-radius:10px;
+ margin-top: 3%;
+}
