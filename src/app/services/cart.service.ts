@@ -87,6 +87,30 @@ export class CartService {
     }
   }
 
+  postCartM(id:string, cart: Cart[])
+  {
+    if(this.userId)
+    {
+      this.afs.collection('medicals/' + id + '/orders').add({createdAt: firebase.firestore.FieldValue.serverTimestamp(),cart: cart});
+    }
+    else{
+      return Promise.reject(new Error('No User Logged In!'));
+    }
+  }
+  getOrders(id:string): Observable<Cart[]> {
+    if(this.userId)
+    {
+      return this.afs.collection('medicals').doc(this.userId).collection('orders').doc(id).collection<Cart>('cart').snapshotChanges()
+      .pipe(map(actions => {
+        return actions.map(action => {
+          const data = action.payload.doc.data() as Cart;
+          const _id = action.payload.doc.id;
+          return { _id, ...data };
+        });
+      }));
+    }
+  }
+
 
 
 }

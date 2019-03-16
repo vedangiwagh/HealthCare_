@@ -10,12 +10,14 @@ export class CartComponent implements OnInit {
 
   cart: Cart[];
   total: number = 0;
+  id: string;
   constructor(private cartservice:CartService) { }
 
   ngOnInit() {
     this.cartservice.getCart()
     .subscribe(cart => {
       this.cart = cart;
+      this.id = cart[0].medicalid;
       cart.forEach(cart => {
         this.total = this.total + cart.price;
       })
@@ -35,6 +37,12 @@ export class CartComponent implements OnInit {
     });
       console.log("Deleted Medicine " + id);
     })
+  }
+
+  onBuy()
+  {
+    console.log(this.id);
+    this.cartservice.postCartM(this.id,this.cart);
   }
 
 }

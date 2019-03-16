@@ -8,6 +8,7 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { AuthService } from '../services/auth.service';
 import { Medical } from '../shared/medical';
 import { Medicine } from '../shared/medicine';
+import { Cart } from '../shared/cart';
 @Injectable({
   providedIn: 'root'
 })
@@ -130,6 +131,20 @@ export class MedicalsService {
         });
       } else {
         return Promise.resolve(false);
+      }
+    }
+
+    getOrders(): Observable<Cart[]> {
+      if(this.userId)
+      {
+        return this.afs.collection('medicals').doc(this.userId).collection<Cart>('orders').snapshotChanges()
+        .pipe(map(actions => {
+          return actions.map(action => {
+            const data = action.payload.doc.data() as Cart;
+            const _id = action.payload.doc.id;
+            return { _id, ...data };
+            });
+          }));
       }
     }
 }

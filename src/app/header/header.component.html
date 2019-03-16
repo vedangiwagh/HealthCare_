@@ -52,6 +52,11 @@
                             <span class="nav-link-inner--text">Manage Medicines</span>
                         </a>
                 </li>
+                <li class="nav-item" *ngIf = "user_category === 'medical'">
+                        <a class="nav-link nav-link-icon" routerLink = "/myorders">
+                            <span class="nav-link-inner--text">Manage Orders</span>
+                        </a>
+                </li>
               <li class="nav-item dropdown" *ngIf = "user_category !== 'medical'">
                   <a class="nav-link nav-link-icon" routerLink = "/buymedicines">
                       <span class="nav-link-inner--text">Buy Medicines</span>
