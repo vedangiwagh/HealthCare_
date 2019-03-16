@@ -6,6 +6,7 @@ import * as firebase from 'firebase/app';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AuthService } from '../services/auth.service';
 import { Medpress } from '../shared/medpres';
+import { Prescription } from '../shared/prescription';
 @Injectable({
   providedIn: 'root'
 })
@@ -51,16 +52,25 @@ export class PrescriptionService {
   getAllMed(patient: string,date_time: string): Observable<Medpress[]> {
     if(this.userId)
     {
-      return this.afs.collection('patients').doc(patient).collection('prescriptions').doc(date_time).collection<Medpress>('medicines').valueChanges()
-      // .pipe(map(actions => {
-      //   return actions.map(action => {
-      //     const data = action.payload.doc.data() as Medpress;
-      //     const _id = action.payload.doc.id;
-      //     return { _id, ...data };
-      //   })[0];
-      // }));
+      return this.afs.collection('patients').doc(patient).collection('prescriptions').doc(date_time).collection<Medpress>('medicines').snapshotChanges()
+      .pipe(map(actions => {
+        return actions.map(action => {
+          const data = action.payload.doc.data() as Medpress;
+          const _id = action.payload.doc.id;
+          return { _id, ...data };
+        });
+      }));
     }
-
+  }
+  getAllPRescription(): Observable<Prescription[]> {
+    return this.afs.collection('patients').doc(this.userId).collection<Prescription>('prescriptions').snapshotChanges()
+    .pipe(map(actions => {
+      return actions.map(action => {
+        const data = action.payload.doc.data() as Prescription;
+        const _id = action.payload.doc.id;
+        return { _id, ...data };
+      });
+    }));
   }
   delMed(patient: string, id:string, date_time:string): Promise<void> {
     const db = firebase.firestore();
@@ -69,6 +79,14 @@ export class PrescriptionService {
     } else {
       return Promise.reject(new Error('No User Logged In!'));
     }
+  }
+  getPrescription(id:string): Observable<Prescription> {
+    return this.afs.collection('patients').doc(id).snapshotChanges()
+    .pipe(map(action => {
+      const data = action.payload.data() as Prescription;
+      const _id = action.payload.id;
+      return { _id, ...data };
+    }));
   }
 }
 

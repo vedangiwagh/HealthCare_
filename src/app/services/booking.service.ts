@@ -37,10 +37,15 @@ export class BookingService {
 
     }
 
-    getAppointment(id): Observable<any> {
+    getAppointment(id): Observable<Booking> {
       if(this.userId)
       {
-        return this.afs.doc('appointments/' + id).valueChanges();
+        return this.afs.doc<Booking>('appointments/' + id).snapshotChanges()
+          .pipe(map(action => {
+            const data = action.payload.data() as Booking;
+            const _id = action.payload.id;
+            return { _id, ...data };
+          }));
       }
     }
 
