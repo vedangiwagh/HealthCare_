@@ -27,6 +27,8 @@ import { MedicalviewComponent } from './medicalview/medicalview.component';
 import { PrescriptionsComponent } from './prescriptions/prescriptions.component';
 import { PrescriptionviewComponent } from './prescriptionview/prescriptionview.component';
 import { PrescriptiondetailComponent } from './prescriptiondetail/prescriptiondetail.component';
+import { MedicalcartComponent } from './medicalcart/medicalcart.component';
+import { OrderdetailComponent } from './orderdetail/orderdetail.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { PrescriptiondetailComponent } from './prescriptiondetail/prescriptionde
     MedicalviewComponent,
     PrescriptionsComponent,
     PrescriptionviewComponent,
-    PrescriptiondetailComponent
+    PrescriptiondetailComponent,
+    MedicalcartComponent,
+    OrderdetailComponent
   ],
   imports: [
     BrowserModule,

@@ -49,10 +49,10 @@ export class PrescriptionService {
       return Promise.reject(new Error('No User Logged In!'));
     }
   }
-  getAllMed(patient: string,date_time: string): Observable<Medpress[]> {
+  getAllMed(patient: string,id: string): Observable<Medpress[]> {
     if(this.userId)
     {
-      return this.afs.collection('patients').doc(patient).collection('prescriptions').doc(date_time).collection<Medpress>('medicines').snapshotChanges()
+      return this.afs.collection('patients').doc(patient).collection('prescriptions').doc(id).collection<Medpress>('medicines').snapshotChanges()
       .pipe(map(actions => {
         return actions.map(action => {
           const data = action.payload.doc.data() as Medpress;
@@ -81,12 +81,12 @@ export class PrescriptionService {
     }
   }
   getPrescription(id:string): Observable<Prescription> {
-    return this.afs.collection('patients').doc(id).snapshotChanges()
-    .pipe(map(action => {
-      const data = action.payload.data() as Prescription;
-      const _id = action.payload.id;
-      return { _id, ...data };
-    }));
+    return this.afs.collection('patients').doc(this.userId).collection('prescriptions').doc<Prescription>(id).valueChanges();
+    // .pipe(map(action => {
+    //   const data = action.payload.data() as Prescription;
+    //   const _id = action.payload.id;
+    //   return { _id, ...data };
+    // }));
   }
 }
 
