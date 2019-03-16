@@ -29,11 +29,11 @@ export class PrescriptionService {
     });
   }
 
-  postPrescription(patient: string, date: string, doctor: string, location: string, date_time: string)
+  postPrescription(patient: string, date: string, doctor: string, location: string, date_time: string, description: string, doctorid: string, patientname: string)
   {
     if(this.userId)
     {
-      return this.afs.collection('patients').doc(patient).collection('prescriptions').doc(date_time).set({ doctor: doctor,location: location,date: date })
+      return this.afs.collection('patients').doc(patient).collection('prescriptions').doc(date_time).set({ user: patientname,doctor: doctor,location: location,date: date, description: description, doctorid: doctorid})
     }
     else{
       return Promise.reject(new Error('No User Logged In!'));

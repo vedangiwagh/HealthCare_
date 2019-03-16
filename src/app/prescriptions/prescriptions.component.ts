@@ -20,11 +20,14 @@ export class PrescriptionsComponent implements OnInit {
   doctor: string;
   location1: string;
   patient: string;
+  description1: string;
   date: string;
   date_time: string;
   medicines: Medicines[];
+  doctorname: string;
   medicine: string;
   med: Medpress[];
+  patientname: string;
   quantity: number;
   appid: string;
   description: string;
@@ -45,7 +48,9 @@ export class PrescriptionsComponent implements OnInit {
     .subscribe(appointment => {
       this.patient = appointment.userid;
       this.date = appointment.date;
+      this.patientname = appointment.user;
       this.doctor = appointment.docid;
+      this.doctorname = appointment.doctor;
       this.id = appointment._id;
       this.appid = appointment._id;
       this.date_time = appointment.date_time;
@@ -62,7 +67,7 @@ export class PrescriptionsComponent implements OnInit {
   }
   onSave()
   {  
-  this.prescriptionservice.postPrescription(this.patient,this.date,this.doctor,this.location1,this.id);
+  this.prescriptionservice.postPrescription(this.patient,this.date,this.doctorname,this.location1,this.id,this.description1,this.doctor,this.patientname)
   } 
   onAdd()
   {

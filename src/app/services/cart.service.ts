@@ -29,6 +29,20 @@ export class CartService {
     });
   }
 
+  // deleteCart(): Promise<void> {
+  //   const db = firebase.firestore();
+  //   if (this.userId) {
+  //     return db.collection('messages').getDocuments().then((snapshot) {
+  //       return snapshot.documents.map((doc) {
+  //         doc.reference.delete();
+  //       });
+  //     });
+      
+  //   } else {
+  //     return Promise.reject(new Error('No User Logged In!'));
+  //   }
+  // }
+
   postCart(medicines: string,price: number,quantity:number, medid: string)
   {
     if(this.userId)
@@ -91,23 +105,63 @@ export class CartService {
   {
     if(this.userId)
     {
-      this.afs.collection('medicals/' + id + '/orders').add({createdAt: firebase.firestore.FieldValue.serverTimestamp(),cart: cart});
+      this.afs.collection('medicals/' + id + '/orders').add({createdAt: firebase.firestore.FieldValue.serverTimestamp(),cart: cart, userid: this.userId});
     }
     else{
       return Promise.reject(new Error('No User Logged In!'));
     }
   }
-  getOrders(id:string): Observable<Cart[]> {
+
+  postCartU( cart: Cart[])
+  {
     if(this.userId)
     {
-      return this.afs.collection('medicals').doc(this.userId).collection('orders').doc(id).collection<Cart>('cart').snapshotChanges()
-      .pipe(map(actions => {
-        return actions.map(action => {
-          const data = action.payload.doc.data() as Cart;
-          const _id = action.payload.doc.id;
-          return { _id, ...data };
-        });
+      this.afs.collection('users/' + this.userId + '/orders').add({createdAt: firebase.firestore.FieldValue.serverTimestamp(),cart: cart});
+    }
+    else{
+      return Promise.reject(new Error('No User Logged In!'));
+    }
+  }
+
+  getOrders(id:string): Observable<any> {
+    if(this.userId)
+    {
+      return this.afs.collection('medicals').doc(this.userId).collection('orders').doc(id).snapshotChanges()
+      .pipe(map(action => {
+        const data = action.payload.data() as any;
+        const _id = action.payload.id;
+        return { _id, ...data };
       }));
+    }
+  }
+
+  getUserOrders(id:string): Observable<any> {
+    if(this.userId)
+    {
+      return this.afs.collection('us').doc(this.userId).collection('orders').doc(id).snapshotChanges()
+      .pipe(map(action => {
+        const data = action.payload.data() as any;
+        const _id = action.payload.id;
+        return { _id, ...data };
+      }));
+    }
+  }
+
+  deleteorderM(mid: string, id:string): Promise<void> {
+    const db = firebase.firestore();
+    if (this.userId) {
+        return db.doc('medicals/' + mid + '/orders/' + id).delete();
+    } else {
+      return Promise.reject(new Error('No User Logged In!'));
+    }
+  }
+
+  deleteorderU(mid: string, id: string): Promise<void> {
+    const db = firebase.firestore();
+    if (this.userId) {
+        return db.doc('users/' + mid + '/orders/' + id).delete();
+    } else {
+      return Promise.reject(new Error('No User Logged In!'));
     }
   }
 

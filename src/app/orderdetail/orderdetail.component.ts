@@ -4,7 +4,6 @@ import { Location } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
 import { CartService } from '../services/cart.service';
 import { Cart } from '../shared/cart';
-import { TouchSequence } from 'selenium-webdriver';
 @Component({
   selector: 'app-orderdetail',
   templateUrl: './orderdetail.component.html',
@@ -20,9 +19,8 @@ export class OrderdetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.pipe(switchMap((params: Params) => this.cartservice.getOrders(params['id'])))
     .subscribe(orders => {
-      console.log(orders);
-      this.cart = orders;
-      console.log(this.cart);
+      console.log(orders.cart);
+      this.cart = orders.cart;
     })
   }
 

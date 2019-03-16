@@ -16,6 +16,10 @@ import { PrescriptionviewComponent } from '../prescriptionview/prescriptionview.
 import { PrescriptiondetailComponent } from '../prescriptiondetail/prescriptiondetail.component'
 import { MedicalcartComponent } from '../medicalcart/medicalcart.component';
 import { OrderdetailComponent } from '../orderdetail/orderdetail.component';
+import { UserordersComponent } from '../userorders/userorders.component';
+import { UserorderdetailComponent } from '../userorderdetail/userorderdetail.component';
+
+
 export const routes: Routes = [
   { path: 'home',  component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -34,5 +38,6 @@ export const routes: Routes = [
   { path: 'prescriptiondetail/:id', component: PrescriptiondetailComponent},
   { path: 'myorders', component: MedicalcartComponent},
   { path: 'orderdetail/:id', component: OrderdetailComponent},
-
+  { path: 'orderdetails/:id', component: UserorderdetailComponent},
+  { path: 'orders', component: UserordersComponent}
 ];

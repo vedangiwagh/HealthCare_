@@ -43,6 +43,8 @@ export class CartComponent implements OnInit {
   {
     console.log(this.id);
     this.cartservice.postCartM(this.id,this.cart);
+    this.cartservice.postCartU(this.cart);
+
   }
 
 }

@@ -1,5 +1,8 @@
 <p>{{patient}}</p>
 <p>{{location1}}</p>
+Description
+<input type="text" [(ngModel)] = "description1">
+
 <button (click) = "onSave()">Create</button>
 <div *ngIf = "medicines">
     <select class="form-control" [(ngModel)] = "medicine" >

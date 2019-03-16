@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Cart } from '../shared/cart';
+import { Order } from '../shared/order';
 import { CartService } from '../services/cart.service';
 import { MedicalsService } from '../services/medicals.service';
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-medicalcart',
   templateUrl: './medicalcart.component.html',
@@ -9,16 +10,33 @@ import { MedicalsService } from '../services/medicals.service';
 })
 export class MedicalcartComponent implements OnInit {
 
-  orders: Cart[];
+  userid: string;
+  user: string;
+  orders: Order[];
   constructor(private cartservice: CartService,
-    private medicalservice: MedicalsService) { }
+    private medicalservice: MedicalsService,
+    private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.getAuthState()
+        .subscribe((user) => {
+        if (user) {
+          this.userid = user.uid;
+          // User is signed in.
+          }
+      });
     this.medicalservice.getOrders()
     .subscribe(orders => {
       this.orders = orders;
       console.log(this.orders);
     })
+  }
+
+  delete(id: string,user: string)
+  {
+    console.log(user);
+    this.cartservice.deleteorderM(this.userid,id);
+    this.cartservice.deleteorderU(user,id);
   }
 
 }

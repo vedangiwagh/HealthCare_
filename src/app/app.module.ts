@@ -29,6 +29,8 @@ import { PrescriptionviewComponent } from './prescriptionview/prescriptionview.c
 import { PrescriptiondetailComponent } from './prescriptiondetail/prescriptiondetail.component';
 import { MedicalcartComponent } from './medicalcart/medicalcart.component';
 import { OrderdetailComponent } from './orderdetail/orderdetail.component';
+import { UserordersComponent } from './userorders/userorders.component';
+import { UserorderdetailComponent } from './userorderdetail/userorderdetail.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { OrderdetailComponent } from './orderdetail/orderdetail.component';
     PrescriptionviewComponent,
     PrescriptiondetailComponent,
     MedicalcartComponent,
-    OrderdetailComponent
+    OrderdetailComponent,
+    UserordersComponent,
+    UserorderdetailComponent
   ],
   imports: [
     BrowserModule,
