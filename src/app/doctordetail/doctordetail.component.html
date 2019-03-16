@@ -1,10 +1,10 @@
-<div *ngIf = "doctor">
+<!-- <div *ngIf = "doctor">
 	<h1>{{doctor.name}}</h1>
 	<p>{{doctor.specialization}}</p>
-</div>
+</div> -->
 <div class="container">
 
-	<div class="form-group">
+	<!-- <div class="form-group">
 		<div class="input-group input-group-alternative">
 			<div class="input-group-prepend">
 				<span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
@@ -15,5 +15,31 @@
 			</select>
 		</div>
 	</div>
-	<button (click) = "bookAppointment()">Confirm</button>
+	<button (click) = "bookAppointment()">Confirm</button> -->
+	<div class="row">
+	<div class="col-md-6 doc">
+		<div *ngIf = "doctor">
+	       <h1 class="font">{{doctor.name}}</h1>
+	       <h3 class="font">--{{doctor.specialization}}</h3>
+	       <h3 class="font">--{{doctor.description}}</h3>
+	       <h3 class="font">--{{doctor.email}}</h3>
+	       <h3 class="font">--{{doctor.location}}</h3>
+	      
+        </div>
+	</div>
+	<div class="col-md-6 tt">
+		<div class="form-group">
+			<div><h4>Book date</h4></div>
+		<div class="input-group input-group-alternative">
+				<span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+			<input class="form-control" [(ngModel)] = "date" placeholder="Select date" type="date"></div><br>
+			<div><h4>Select Slot Timings</h4></div>
+			<select class="form-control" [(ngModel)] = "time" placeholder="Time">
+				<option *ngFor ="let timing of timings">{{timing}}</option>
+			</select>
+		
+	</div>
+	<button (click) = "bookAppointment()" class="btn btn-success">Confirm</button> 
+	</div>
+	</div>
 </div>
