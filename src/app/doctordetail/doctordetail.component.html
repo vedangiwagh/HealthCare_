@@ -10,8 +10,7 @@
 				<span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
 			</div>
 			<input class="form-control" [(ngModel)] = "date" placeholder="Select date" type="date">
-			<label for="inputState">Time</label>
-			<select class="form-control" [(ngModel)] = "time">
+			<select class="form-control" [(ngModel)] = "time" placeholder="Time">
 				<option *ngFor ="let timing of timings">{{timing}}</option>
 			</select>
 		</div>
