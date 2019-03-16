@@ -1,0 +1,17 @@
+<p>{{patient}}</p>
+<p>{{location1}}</p>
+<button (click) = "onSave()">Create</button>
+<div *ngIf = "medicines">
+    <select class="form-control" [(ngModel)] = "medicine" >
+				<option *ngFor ="let medicine of medicines">{{medicine._id}}</option>
+    </select>
+    Description
+    <input type="text" [(ngModel)] = "description" >
+    Quantity
+    <input type="number" [(ngModel)] = "quantity" >
+    <button (click) = "onAdd()">Add</button>
+</div>
+<div *ngFor = "let medicine of med">
+  <h4 > {{medicine.medicine}} </h4>
+  <button (click)="deleteMed(medicine.medicine)">Delete</button>
+</div>

@@ -80,6 +80,8 @@ export class UserprofileComponent implements OnInit {
       .then(value => {
         if(!value)
         {
+          this.start_time = + this.start_time;
+          this.end_time = + this.end_time;
           this.doctorservice.postDoctor(this.name, this.specialization ,this.location,this.gender, this.description, this.start_time, this.end_time);
         }
         else
