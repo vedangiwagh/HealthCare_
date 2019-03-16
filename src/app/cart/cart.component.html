@@ -1,20 +1,46 @@
+<div class="h"><h1>CART</h1></div>
 <div class="container">
-  <div *ngFor = "let car of cart">
-    <h1>{{car.medicines}}</h1><span>{{car.quantity}}</span>
-    <h2> {{car.price}} </h2>
-    <button (click) = "deleteMedicine(car._id, car.price)">Delete</button>
+	
+<div class="row">
+<div class="col-md-9">
+  
+    <!-- <h1>{{car.medicines}}</h1><span>{{car.quantity}}</span>
+    <h2> {{car.price}} </h2> -->
+    
+ 
+ 
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>NAME</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+   
+    <tbody>
+      <tr *ngFor = "let car of cart">
+        <td>{{car.medicines}}</td>
+        <td>{{car.quantity}}</td>
+        <td>{{car.price}}</td>
+        <td><button (click) = "deleteMedicine(car._id, car.price)" class="btn btn-danger">Delete</button></td>
+      </tr>
+    </tbody>
+   
+  </table>
+</div>
+<div class="col-md-3">
+<div class="card">
+	<div class="card-header"><h4 class="card-title">Total <i style="font-size:24px" class="fa">&#xf07a;</i></h4></div>
+  <div class="card-body">{{total}}
   </div>
-  <h1>{{ total }}</h1>
-  <div class="card">
-  	<div class="card-body">
-  		<div class="row">
-  			<div class="col-md-1">
-  				<img src="../../assets/img/cart/1.jpg">
-  			</div>
-  			<div class="col-md-11">
-  				<img src="../../assets/img/cart/1.jpg"> 
-  			</div>
-  		</div>
-  	</div>
+  <div class="card-footer">
+    <button class="btn btn-success">BUY</button>
+
   </div>
+</div>
+</div>
+
+</div>
 </div>
