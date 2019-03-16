@@ -3,12 +3,13 @@ import { Doctor } from './doctor';
 
 export class Booking {
     _id: string;
-    user: User;
-    doctors: Doctor[];
-    createdAt: string;
-    updatedAt: string;
+    user: string;
+    doctor: string;
     date: string;
-    time: string;
+    time: number;
+    date_time: string;
+    userid: string;
+    docid: string;
 }
 
 export interface BookingDoc {

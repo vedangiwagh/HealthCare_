@@ -1,9 +1,10 @@
 <div *ngFor = "let appointment of appointments">
-    <h1>{{appointment.userid}}</h1>
+    <h1>{{appointment.user}}</h1>
     <h2>{{appointment.date}}</h2>
     <h2>{{appointment.time}}</h2>
     <h3>{{appointment._id}}</h3>
     <button [routerLink]="['/userdetail', appointment.userid]">View Patient's Info</button>
     <button (click) = "cancelAppointment(appointment._id)">Cancel</button>
+    <button [routerLink]="['/appointment', appointment._id]">Start</button>
   </div>
   

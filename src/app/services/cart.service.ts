@@ -29,11 +29,11 @@ export class CartService {
     });
   }
 
-  postCart(medicines: string,price: number,quantity:number)
+  postCart(medicines: string,price: number,quantity:number, medid: string)
   {
     if(this.userId)
     {
-      this.afs.collection('users/' + this.userId + '/cart').add({medicines: medicines,price: price, quantity:quantity});
+      this.afs.collection('users/' + this.userId + '/cart').add({medicines: medicines,price: price, quantity:quantity, medicalid: medid});
     }
     else{
       return Promise.reject(new Error('No User Logged In!'));
@@ -67,6 +67,18 @@ export class CartService {
     const db = firebase.firestore();
     if (this.userId) {
       return db.collection('users').doc(this.userId).collection('cart').where('medicines', '==', id).get()
+      .then(doc => {
+        return !doc.empty;
+      });
+    } else {
+      return Promise.resolve(false);
+    }
+  }
+
+  isMedical(id: string): Promise<boolean> {
+    const db = firebase.firestore();
+    if (this.userId) {
+      return db.collection('users').doc(this.userId).collection('cart').where('medicalid', '==', id).get()
       .then(doc => {
         return !doc.empty;
       });
