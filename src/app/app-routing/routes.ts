@@ -12,6 +12,8 @@ import { UserdetailComponent } from '../userdetail/userdetail.component';
 import { from } from 'rxjs';
 import { MedicalviewComponent } from '../medicalview/medicalview.component';
 import { PrescriptionsComponent } from '../prescriptions/prescriptions.component'
+import { PrescriptionviewComponent } from '../prescriptionview/prescriptionview.component'
+import { PrescriptiondetailComponent } from '../prescriptiondetail/prescriptiondetail.component'
 
 export const routes: Routes = [
   { path: 'home',  component: HomeComponent },
@@ -27,5 +29,7 @@ export const routes: Routes = [
   { path: 'buymedicines', component: MedicalsComponent},
   { path: 'cart', component: CartComponent},
   { path: 'appointment/:id', component: PrescriptionsComponent},
+  { path: 'prescriptions', component: PrescriptionviewComponent},
+  { path: 'prescriptiondetail/:id', component: PrescriptiondetailComponent}
 
 ];
