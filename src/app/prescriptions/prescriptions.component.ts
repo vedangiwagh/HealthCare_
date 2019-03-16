@@ -26,6 +26,7 @@ export class PrescriptionsComponent implements OnInit {
   medicine: string;
   med: Medpress[];
   quantity: number;
+  appid: string;
   description: string;
   constructor(private doctorservice: DoctorService, private patientservice: PatientsService,
     private prescriptionservice: PrescriptionService,private route: ActivatedRoute,
@@ -45,30 +46,30 @@ export class PrescriptionsComponent implements OnInit {
       this.patient = appointment.userid;
       this.date = appointment.date;
       this.doctor = appointment.docid;
-      this.id = appointment.date_time;
+      this.id = appointment._id;
+      this.appid = appointment._id;
       this.date_time = appointment.date_time;
       this.doctorservice.getDoctor(this.doctor)
       .subscribe(doctor => {
         this.location1 = doctor.location;
       });
-      this.prescriptionservice.getAllMed(this.patient,this.date_time)
+      this.prescriptionservice.getAllMed(this.patient,this.id)
     .subscribe(medicines => {
       this.med = medicines;
       console.log(this.med);
     })
     });
-    
   }
   onSave()
   {  
-  this.prescriptionservice.postPrescription(this.patient,this.date,this.doctor,this.location1,this.date_time);
+  this.prescriptionservice.postPrescription(this.patient,this.date,this.doctor,this.location1,this.id);
   } 
   onAdd()
   {
-    this.prescriptionservice.postMed(this.medicine,this.quantity,this.patient,this.date,this.date_time,this.description);
+    this.prescriptionservice.postMed(this.medicine,this.quantity,this.patient,this.date,this.id,this.description);
   }
   deleteMed(id: string)
   {
-    this.prescriptionservice.delMed(this.patient,id,this.date_time);
+    this.prescriptionservice.delMed(this.patient,id,this.id);
   }
 }

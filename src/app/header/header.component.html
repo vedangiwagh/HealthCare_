@@ -37,6 +37,11 @@
                         <span class="nav-link-inner--text">My Appointments</span>
                     </a>
                 </li>
+                <li class="nav-item" *ngIf = "user_category === 'patient'">
+                        <a class="nav-link nav-link-icon" routerLink = "/prescriptions">
+                            <span class="nav-link-inner--text">My Prescriptions</span>
+                        </a>
+                    </li>
                 <li class="nav-item" *ngIf = "user_category === 'doctor'">
                     <a class="nav-link nav-link-icon" routerLink = "/doctorsview">
                         <span class="nav-link-inner--text">Manage Appointment</span>

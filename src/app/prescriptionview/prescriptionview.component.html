@@ -1,0 +1,4 @@
+<div *ngFor = "let pre of prescription">
+  <p> {{pre.date}} </p>
+  <button [routerLink]="['/prescriptiondetail', pre._id]">View</button>
+</div>
