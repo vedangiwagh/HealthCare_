@@ -18,3 +18,4 @@ Description
   <h4 > {{medicine.medicine}} </h4>
   <button (click)="deleteMed(medicine.medicine)">Delete</button>
 </div>
+<button [routerLink]="['/prescriptiondetail', id]">Done</button>

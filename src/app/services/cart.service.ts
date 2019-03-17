@@ -138,7 +138,7 @@ export class CartService {
   getUserOrders(id:string): Observable<any> {
     if(this.userId)
     {
-      return this.afs.collection('us').doc(this.userId).collection('orders').doc(id).snapshotChanges()
+      return this.afs.collection('users').doc(this.userId).collection('orders').doc(id).snapshotChanges()
       .pipe(map(action => {
         const data = action.payload.data() as any;
         const _id = action.payload.id;
