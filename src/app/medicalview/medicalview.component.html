@@ -1,6 +1,28 @@
 <div *ngIf = "medicines">
+</div>
+<div *ngIf = "med">
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>NAME</th>
+        <th>Price</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+   
+    <tbody>
+      <tr *ngFor = "let medicine of med">
+        <td>{{medicine.name}}</td>
+        <td>{{medicine.price}}</td>
+        <button (click) ="deleteMedicine(medicine.name)" class="btn btn-danger">Delete</button>
+      </tr>
+    </tbody>
+   
+  </table>
+</div>
+  <!-- <div *ngIf = "medicines">
     <select class="form-control" [(ngModel)] = "selectedMedicine" >
-				<option *ngFor ="let medicine of medicines">{{medicine._id}}</option>
+        <option *ngFor ="let medicine of medicines">{{medicine._id}}</option>
     </select>
     Price
     <input type="number" [(ngModel)] = "price" >
@@ -21,4 +43,4 @@
   Name<input type="text" [(ngModel)] = "name">
   Description <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write Description" [(ngModel)] = "description"></textarea>
   <button (click) = "addMed(name, description)">Add</button>
-</div>
+</div> -->
