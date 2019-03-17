@@ -32,6 +32,9 @@ export class DoctorsviewComponent implements OnInit {
       console.log("Deleted appointment");
     });
   }
+  update(id: string) {
+    this.bookingservice.putAppointment(id);
+  }
 
 
 

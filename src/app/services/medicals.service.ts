@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, throwIfEmpty } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import * as firebase from 'firebase/app';
 import { User } from '../shared/user'; 
@@ -8,7 +8,7 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { AuthService } from '../services/auth.service';
 import { Medical } from '../shared/medical';
 import { Medicine } from '../shared/medicine';
-import { Cart } from '../shared/cart';
+import { Order } from '../shared/order';
 @Injectable({
   providedIn: 'root'
 })
@@ -134,13 +134,26 @@ export class MedicalsService {
       }
     }
 
-    getOrders(): Observable<Cart[]> {
+    getOrders(): Observable<Order[]> {
       if(this.userId)
       {
-        return this.afs.collection('medicals').doc(this.userId).collection<Cart>('orders').snapshotChanges()
+        return this.afs.collection('medicals').doc(this.userId).collection<Order>('orders').snapshotChanges()
         .pipe(map(actions => {
           return actions.map(action => {
-            const data = action.payload.doc.data() as Cart;
+            const data = action.payload.doc.data() as Order;
+            const _id = action.payload.doc.id;
+            return { _id, ...data };
+            });
+          }));
+      }
+    }
+    getUserOrder(): Observable<Order[]> {
+      if(this.userId)
+      {
+        return this.afs.collection('users').doc(this.userId).collection<Order>('orders').snapshotChanges()
+        .pipe(map(actions => {
+          return actions.map(action => {
+            const data = action.payload.doc.data() as Order;
             const _id = action.payload.doc.id;
             return { _id, ...data };
             });

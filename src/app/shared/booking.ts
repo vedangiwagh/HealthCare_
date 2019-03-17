@@ -10,6 +10,7 @@ export class Booking {
     date_time: string;
     userid: string;
     docid: string;
+    status: boolean;
 }
 
 export interface BookingDoc {

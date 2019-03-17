@@ -7,19 +7,50 @@
     <button (click) = "cancelAppointment(appointment._id)">Cancel</button>
     <button [routerLink]="['/appointment', appointment._id]">Start</button>
   </div> -->
+  <h1 style="text-align: center">Current</h1>
 <div class="container-fluid">
   	<div class="row">
-  		<div class="card col-md-3 mx-5" *ngFor = "let appointment of appointments">
-			<div class="card-header"><h4 class="card-title">{{appointment.user}}<button class="btn btn-info" [routerLink]="['/userdetail', appointment.userid]" style="float: right;">Patient's Profile</button></h4></div>
-  			<div class="card-body">
-   			 <h5>Date:{{appointment.date}}</h5>
-    		 <h5>Time:{{appointment.time}}</h5>
-    		 <h5>Token id:{{appointment._id}}</h5>
-  			</div>
-  			<div class="card-footer">
-    			<button class="btn btn-success"[routerLink]="['/appointment', appointment._id]">Prescribe</button>
-    			<button class="btn btn-danger"(click) = "cancelAppointment(appointment._id)" style="float: right;">Cancel</button>
-   			</div>
-  		</div>
+      
+      <div class="col-md-3 mx-5" *ngFor = "let appointment of appointments">
+          <div class="card col-md-12 mx-5" *ngIf = "appointment.status == false" >
+              <div class="card-header"><h4 class="card-title">{{appointment.user}}<button class="btn btn-info" [routerLink]="['/userdetail', appointment.userid]" style="float: right;">Patient's Profile</button></h4></div>
+              <div class="card-body">
+                <h5>Date:{{appointment.date}}</h5>
+               <h5>Time:{{appointment.time}}</h5>
+               <h5>Token id:{{appointment._id}}</h5>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-success" (click)="update(appointment._id)" [routerLink]="['/appointment', appointment._id]">Prescribe</button>
+                <button class="btn btn-danger"(click) = "cancelAppointment(appointment._id)" style="float: right;">Cancel</button>
+               </div>
+              
+      
+  </div>
+      </div>
+          
+	</div>
+</div>
+
+<hr>
+<h1 style="text-align: center">Past</h1>
+<div class="container-fluid">
+  	<div class="row">
+      
+      <div class="col-md-3 mx-5" *ngFor = "let appointment of appointments">
+          <div class="card col-md-12 mx-5" *ngIf = "appointment.status == true" >
+              <div class="card-header"><h4 class="card-title">{{appointment.user}}<button class="btn btn-info" [routerLink]="['/userdetail', appointment.userid]" style="float: right;">Patient's Profile</button></h4></div>
+              <div class="card-body">
+                <h5>Date:{{appointment.date}}</h5>
+               <h5>Time:{{appointment.time}}</h5>
+               <h5>Token id:{{appointment._id}}</h5>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-success" [routerLink]="['/prescriptiondetail', appointment._id]">View Details</button>
+               </div>
+              
+      
+  </div>
+      </div>
+          
 	</div>
 </div>

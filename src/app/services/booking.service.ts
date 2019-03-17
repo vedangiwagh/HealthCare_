@@ -101,15 +101,32 @@ export class BookingService {
       // }
     postAppointment(name: string, id: string, date: string, time: number, dt: string) {
       if (this.userId) {
-        return this.afs.collection('appointments').add({userid: this.userId, doctor: name, docid: id, date:date, time:time, date_time: dt, user: this.username });
+        return this.afs.collection('appointments').add({userid: this.userId, doctor: name, docid: id, date:date, time:time, date_time: dt, user: this.username, status: false });
       } else {
         return Promise.reject(new Error('No User Logged In!'));
       }
     }
+
+    putAppointment(id: string) {
+      if (this.userId) {
+        return this.afs.collection('appointments').doc(id).update({status: true });
+      } else {
+        return Promise.reject(new Error('No User Logged In!'));
+      }
+    }
+
+    // putAppointment(name: string, id: string, date: string, time: number, dt: string, status: boolean) {
+    //   if (this.userId) {
+    //     return this.afs.collection('appointments').add({userid: this.userId, doctor: name, docid: id, date:date, time:time, date_time: dt, user: this.username, status: false });
+    //   } else {
+    //     return Promise.reject(new Error('No User Logged In!'));
+    //   }
+    // }
+
     isAppointment(id: string): Promise<boolean> {
       const db = firebase.firestore();
       if (this.userId) {
-        return db.collection('appointments').where('userid', '==', this.userId).where('docid', '==', id).get()
+        return db.collection('appointments').where('userid', '==', this.userId).where('docid', '==', id).where('status', '==', false).get()
         .then(doc => {
           return !doc.empty;
         });

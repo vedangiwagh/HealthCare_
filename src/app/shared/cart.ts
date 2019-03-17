@@ -1,4 +1,3 @@
-import { Medicine } from './medicine';
 export class Cart {
      _id: string;
     userid: string;

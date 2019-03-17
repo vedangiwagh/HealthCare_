@@ -1,5 +1,8 @@
 <p>{{patient}}</p>
 <p>{{location1}}</p>
+Description
+<input type="text" [(ngModel)] = "description1">
+
 <button (click) = "onSave()">Create</button>
 <div *ngIf = "medicines">
     <select class="form-control" [(ngModel)] = "medicine" >
@@ -15,3 +18,4 @@
   <h4 > {{medicine.medicine}} </h4>
   <button (click)="deleteMed(medicine.medicine)">Delete</button>
 </div>
+<button [routerLink]="['/prescriptiondetail', id]">Done</button>

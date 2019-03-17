@@ -1,6 +1,11 @@
+
+<div *ngFor = "let order of orders">
+
 <!-- <div *ngFor = "let order of orders" routerLink = "/">
+
   <h1> {{order._id}} </h1>
   <h1> {{order.createdAt.toDate() | date: 'yyyy/MM/dd h:mm:ss a'}} </h1>
+  <button (click) = "delete(order._id,order.userid)">Cancel</button>
   <button [routerLink]="['/orderdetail', order._id]">View</button>
 </div> -->
 <div class="container-fluid">
