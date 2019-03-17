@@ -1,3 +1,48 @@
+<div class="container">
+	<h2 class="h">PATIENT PROFILE</h2>
 <div *ngIf = "user_category === 'doctor'">
-  <h1>{{patient.bloodgroup}}</h1>
+  <table class="table table-striped">
+   
+      <tr>
+        <th>Patient Name:</th><td>{{patient.name}}</td>
+      </tr>
+      <tr>
+        <th>Bloodgroup:</th><td>{{patient.bloodgroup}}</td>
+      </tr>
+       <tr>
+        <th>Age:</th><td>{{patient.age}}</td>
+      </tr>
+      <tr>
+        <th>Gender:</th><td>{{patient.gender}}</td>
+      </tr>
+      <tr>
+        <th>Height:</th><td>{{patient.height}}</td>
+      </tr>
+      <tr>
+        <th>Weight:</th><td>{{patient.weight}} kg</td>
+      </tr>
+      <tr>
+        <th>Contact:</th><td>{{patient.contact}}</td>
+      </tr>
+   </table>
 </div>
+</div>
+<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->
