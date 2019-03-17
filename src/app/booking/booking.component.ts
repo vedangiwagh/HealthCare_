@@ -19,6 +19,7 @@ export class BookingComponent implements OnInit {
   ngOnInit() {
     this.bookingservice.getAppointments()
       .subscribe(appointments => {
+        
         this.appointments = appointments;
       },
       errmess => this.errMess = <any>errmess);
