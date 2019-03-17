@@ -5,3 +5,40 @@ table
 	border-radius: 5px;
 	text-align: center;
 }
+.doc,.tt
+{
+	height: 28vh;
+	border: 1px solid grey;
+	border-radius: 10px;
+	box-shadow: 3px 5px 1px 1px;
+	padding:5px;
+	margin-bottom: 5%;
+	margin-left,margin-right: 2%;
+	text-align: center;
+}
+input{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	outline: none;
+	display: block;
+	width: 100%;
+	padding: 7px;
+	border: none;
+	border-bottom: 1px solid #ddd;
+	background: transparent;
+	margin-bottom: 10px;
+}
+select
+{
+	padding: 7px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+
+}
+.he
+{
+	text-align: center;
+
+}

@@ -1,14 +1,30 @@
-<div *ngIf = "medicines">
-  <select class="form-control" [(ngModel)] = "selectedMedicine" >
+<div class="container">
+  <h2 class="he">Add to Our Database</h2>
+  <div *ngIf = "medicines">
+    <div class="row">
+      <div class="col-md-6 doc">
+        <input type="text" [(ngModel)] = "name" placeholder="New Medicine Name">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" cols="2" placeholder="Write Description of the medicine" [(ngModel)] = "description"></textarea><br>
+        <button (click) = "addMed(name, description)" class="btn btn-info">Add</button>
+      </div>
+      <div class="col-md-6 tt">
+        <div class="input-group input-group-alternative">
+      <h4><label>Medicine</label></h4>
+      <select class="form-control" [(ngModel)] = "selectedMedicine" >
         <option *ngFor ="let medicine of medicines">{{medicine._id}}</option>
-    </select>
-    Price
-    <input type="number" [(ngModel)] = "price" >
-    <button (click) = "addMedicine(selectedMedicine, price)" class="btn btn-info">Add</button>
+      </select>
+      </div><br>
+      
+        <input type="number" [(ngModel)] = "price" placeholder="Price"><br>
+        <button (click) = "addMedicine(selectedMedicine, price)" class="btn btn-info">Add</button>
+      </div>
+    </div>
+  </div>
 </div>
+
 <div class="container">
 <div *ngIf = "med">
-  <h2>Database</h2>
+  <h2 class="he">Database</h2>
 <table class="table table-hover">
     <thead>
       <tr>
@@ -53,3 +69,29 @@
   Description <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write Description" [(ngModel)] = "description"></textarea>
   <button (click) = "addMed(name, description)">Add</button>
 </div> -->
+  <!-- <div class="row">
+  <div class="col-md-6 doc">
+    <div *ngIf = "doctor">
+         <h1 class="font">{{doctor.name}}</h1>
+         <h3 class="font">--{{doctor.specialization}}</h3>
+         <h3 class="font">--{{doctor.description}}</h3>
+         <h3 class="font">--{{doctor.email}}</h3>
+         <h3 class="font">--{{doctor.location}}</h3>
+        
+        </div>
+  </div>
+  <div class="col-md-6 tt">
+    <div class="form-group">
+      <div><h4>Book date</h4></div>
+    <div class="input-group input-group-alternative">
+        <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+      <input class="form-control" [(ngModel)] = "date" placeholder="Select date" type="date"></div><br>
+      <div><h4>Select Slot Timings</h4></div>
+      <select class="form-control" [(ngModel)] = "time" placeholder="Time">
+        <option *ngFor ="let timing of timings">{{timing}}</option>
+      </select>
+    
+  </div>
+  <button (click) = "bookAppointment()" class="btn btn-success">Confirm</button> 
+  </div>
+  </div> -->

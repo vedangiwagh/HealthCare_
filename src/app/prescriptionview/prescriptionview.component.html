@@ -2,12 +2,14 @@
 <div class="container">
 	<div class="card" *ngFor = "let pre of prescription">
 	<div class="card-header"><h4 class="card-title">View Prescription</h4></div>
-  <div class="card-body"> {{pre.date}} 
+	 <div class="card-body"> <div class="row">
+		<div class="col-md-6">
+ {{pre.date}} </div>
+ <div class="col-md-6">
+  	<button [routerLink]="['/prescriptiondetail', pre._id]" class="btn btn-info">View</button>
   </div>
-  <div class="card-footer">
-   <button [routerLink]="['/prescriptiondetail', pre._id]" class="btn btn-info">View</button>
-
   </div>
+ </div>
 </div>
   
 
