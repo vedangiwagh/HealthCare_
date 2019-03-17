@@ -100,7 +100,9 @@ export class MedicaldetailComponent implements OnInit {
               this.med = medicines;
               this.price = this.med[0].price*this.quantity;
               console.log(this.medical._id);  
-              this.cartservice.postCart(this.selectedMedicine,this.price,this.quantity, this.medical._id);   
+              alert("Medicine added to cart");
+              this.cartservice.postCart(this.selectedMedicine,this.price,this.quantity, this.medical._id);
+                 
             });
           });
         }

@@ -24,6 +24,7 @@ export class PrescriptionsComponent implements OnInit {
   date: string;
   date_time: string;
   medicines: Medicines[];
+  create: boolean;
   doctorname: string;
   medicine: string;
   med: Medpress[];
@@ -67,6 +68,7 @@ export class PrescriptionsComponent implements OnInit {
   }
   onSave()
   {  
+  this.create = true;
   this.prescriptionservice.postPrescription(this.patient,this.date,this.doctorname,this.location1,this.id,this.description1,this.doctor,this.patientname)
   } 
   onAdd()

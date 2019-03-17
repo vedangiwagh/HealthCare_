@@ -34,7 +34,6 @@ export class MedicalcartComponent implements OnInit {
 
   delete(id: string,user: string)
   {
-    console.log(user);
     this.cartservice.deleteorderM(this.userid,id);
     this.cartservice.deleteorderU(user,id);
   }

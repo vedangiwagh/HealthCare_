@@ -30,9 +30,9 @@ export class UserordersComponent implements OnInit {
       console.log(this.orders);
     })
   }
-  delete(id:string)
+  delete(id:string,user: string)
   {
-    
+    this.cartservice.deleteorderU(user,id);
   }
 
 }

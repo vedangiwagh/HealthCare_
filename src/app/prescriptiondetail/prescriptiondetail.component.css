@@ -19,3 +19,8 @@ td,tr,th
  border-radius:10px;
  margin-top: 3%;
 }
+.icon{
+	right: 15%;
+	top: 23%;
+	position: absolute;
+}
