@@ -1,4 +1,61 @@
-<p>{{patient}}</p>
+<div class="container">
+  <h3 class="he">Patient Name:  {{patientname}}</h3>
+<h4 class="he">Patient Location:  {{location1}}</h4>
+<textarea [(ngModel)] = "description1" placeholder="Enter Symtoms" rows="2" style="width: 100%"></textarea>
+
+<button class="btn btn-success" (click) = "onSave()">Create</button>
+<div *ngIf = "medicines">
+  <div class="row">
+    <div class="col-md-3">
+  Medicines
+    <select class="form-control" [(ngModel)] = "medicine" >
+        <option *ngFor ="let medicine of medicines">{{medicine._id}}</option>
+    </select>
+  </div>
+  <div class="col-md-3">
+   Dose Description<br>
+    <input type="text" [(ngModel)] = "description" >
+  </div>
+  <div class="col-md-3">
+  Quantity<br>
+    <input type="number" [(ngModel)] = "quantity" placeholder="Quantity">
+    
+  </div>
+   <div col-md-3>
+    Add to table<br>
+     <button (click) = "onAdd()" class="btn btn-info">Add</button>
+   </div>
+    
+</div>
+</div>
+<div >
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Dose Description</th>
+        <th>Quantity</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+   
+    <tbody>
+      <tr *ngFor = "let medicine of med">
+        <td>{{medicine.medicine}}</td>
+        <td>{{medicine.description}}</td>
+        <td>{{medicine.quantity}}</td>
+        <td> <button (click)="deleteMed(medicine.medicine)" class="btn btn-danger">Delete</button></td>
+      </tr>
+    </tbody>
+   
+  </table>
+ 
+</div>
+<button [routerLink]="['/prescriptiondetail', id]" class="btn btn-success">Done</button>
+</div>
+
+
+<!-- <p>{{patient}}</p>
 <p>{{location1}}</p>
 Description
 <input type="text" [(ngModel)] = "description1">
@@ -19,3 +76,4 @@ Description
   <button (click)="deleteMed(medicine.medicine)">Delete</button>
 </div>
 <button [routerLink]="['/prescriptiondetail', id]">Done</button>
+ -->

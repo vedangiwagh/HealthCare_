@@ -1,0 +1,36 @@
+.he
+{
+	text-align: center;
+
+}
+input{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	outline: none;
+	display: block;
+	width: 100%;
+	padding: 7px;
+	border: none;
+	border-bottom: 1px solid #ddd;
+	background: transparent;
+	margin-bottom: 10px;
+}
+select
+{
+	padding: 7px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+
+}
+table
+{
+	border-left: 1px solid black;
+	box-shadow: 3px 7px 1px 1px;
+	border-radius: 5px;
+}
+td,tr,th
+{
+	border-collapse: collapse;
+}
