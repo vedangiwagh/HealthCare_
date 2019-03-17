@@ -1,0 +1,14 @@
+.container
+{
+	margin-top: 2%;
+}
+table
+{
+	box-shadow: 4	px 4px;
+	border-radius: 5px;
+	border: 1px solid black;
+}
+.h
+{
+	text-align: center;
+}
