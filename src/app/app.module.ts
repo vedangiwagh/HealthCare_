@@ -31,6 +31,8 @@ import { MedicalcartComponent } from './medicalcart/medicalcart.component';
 import { OrderdetailComponent } from './orderdetail/orderdetail.component';
 import { UserordersComponent } from './userorders/userorders.component';
 import { UserorderdetailComponent } from './userorderdetail/userorderdetail.component';
+import { ChatbotComponent } from './chatbot/chatbot.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { UserorderdetailComponent } from './userorderdetail/userorderdetail.comp
     MedicalcartComponent,
     OrderdetailComponent,
     UserordersComponent,
-    UserorderdetailComponent
+    UserorderdetailComponent,
+    ChatbotComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +69,7 @@ import { UserorderdetailComponent } from './userorderdetail/userorderdetail.comp
     Ng2SearchPipeModule,
     DateInputsModule,
     IntlModule,
+    HttpModule,
     BrowserAnimationsModule
   ],
   providers: [],

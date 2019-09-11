@@ -1,0 +1,67 @@
+<br>
+<br>
+<div class="container" *ngIf = "!stop">
+  <div class="row">
+  <div class="col-md-6">
+    <div class="scroll">
+<h1 *ngFor= "let ms of msgs">
+  <p class="chat">{{ms}}</p>
+</h1>
+<div *ngIf = "b">
+<div *ngIf = "b.type == 'group_single'">
+  <div *ngFor = "let item of items">
+    <div class="custom-control custom-radio mb-3">
+        <input name="custom-radio-1" class="custom-control-input" id="{{item.id}}" type="radio" value="{{ item.id }}" [(ngModel)] = "id">
+        <label class="custom-control-label" for="{{item.id}}">{{ item.name }}</label>
+    </div>
+  </div>
+  <button *ngIf = "!input" class="btn btn-primary abs" (click) = "submit1()">Submit</button>
+</div>
+<div *ngIf = "b.type == 'single'">
+    <div *ngFor = "let item of items">
+      <div *ngFor = "let choice of item.choices">
+          <div class="custom-control custom-radio mb-3">
+              <input name="custom-radio-1" class="custom-control-input" id="{{choice.id}}" type="radio" value="{{ item.id }}" [(ngModel)] = "id" (click) = "submit2(item.id,choice.label)">
+              <label class="custom-control-label" for="{{choice.id}}">{{ choice.label }}</label>
+          </div>
+      </div>
+    </div>
+    <button *ngIf = "!input" class="btn btn-primary abs" (click) = "submit1()">Submit</button>
+  </div>
+  <div *ngIf = "b.type == 'group_multiple'">
+      <div *ngFor = "let item of items">
+          <div class="custom-control custom-checkbox mb-3">
+              <input class="custom-control-input" id="{{item.id}}" type="checkbox" (click) = "submit3(item.id)">
+              <label class="custom-control-label" for="{{item.id}}">{{item.name}}</label>
+          </div>
+      </div>
+      <button *ngIf = "!input" class="btn btn-primary abs"  (click) = "submit4()">Submit</button>
+    </div>
+</div></div>
+<div class="form-group abs" *ngIf = "input">
+  <div class="row">
+    <input class="col-xs-9" type="text" placeholder="Type your text" class="form-control" [(ngModel)] = "crr" />
+    <button class="btn btn-primary col-xs-3" (click) = "submit()">Submit</button>
+    </div>
+  </div>
+  </div>
+<div class="col-md-6" *ngIf = "bod">
+  <div>
+    <h1>SYmptoms observed by your input</h1>
+    <div *ngFor = "let mention of bod.mentions">
+      <li type="none" *ngIf = "mention.choice_id == 'present'"><i class="ni ni-zoom-split-in"></i>{{mention.common_name}}</li>
+      <li type="none" *ngIf = "mention.choice_id == 'absent'"><i class="ni ni-fat-delete"></i>{{mention.common_name}}</li>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<div class="container" *ngIf = "stop">
+  <div class="row">
+    <h1>Results</h1>
+      <div *ngFor = "let condi of condition">
+        <h2>{{condi.common_name}}{{condi.probability}}</h2>
+      </div>
+      <button class="btn btn-primary col-xs-3" (click) = "done()">Done</button>
+  </div>
+</div>

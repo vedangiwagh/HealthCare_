@@ -1,0 +1,16 @@
+.chat
+{
+    background-color: lightgreen;
+    border-radius: 20%;
+    padding: 5px;
+}
+.abs
+{
+    position: absolute;
+    top: 65vh;
+}
+.scroll
+{
+    height: 60vh;
+    overflow-y: scroll
+}

@@ -41,10 +41,9 @@ export class CartComponent implements OnInit {
 
   onBuy()
   {
-    console.log(this.id);
     this.cartservice.postCartM(this.id,this.cart);
     this.cartservice.postCartU(this.cart);
-
+    alert("Order Placed to Selected Medical Store");
   }
 
 }

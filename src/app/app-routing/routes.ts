@@ -18,6 +18,7 @@ import { MedicalcartComponent } from '../medicalcart/medicalcart.component';
 import { OrderdetailComponent } from '../orderdetail/orderdetail.component';
 import { UserordersComponent } from '../userorders/userorders.component';
 import { UserorderdetailComponent } from '../userorderdetail/userorderdetail.component';
+import { ChatbotComponent } from '../chatbot/chatbot.component';
 
 
 export const routes: Routes = [
@@ -25,19 +26,20 @@ export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'appointment', component: DoctorsComponent },
   { path: 'doctordetail/:id', component: DoctordetailComponent },
-  { path: 'medicaldetail/:id', component: MedicaldetailComponent },
+  // { path: 'medicaldetail/:id', component: MedicaldetailComponent },
   { path: 'userdetail/:id', component: UserdetailComponent},
   { path: 'myappointments', component: BookingComponent },
-  { path: 'managemedicines', component: MedicalviewComponent },
+  // { path: 'managemedicines', component: MedicalviewComponent },
   { path: 'userprofile', component: UserprofileComponent },
   { path: 'doctorsview', component: DoctorsviewComponent },
-  { path: 'buymedicines', component: MedicalsComponent},
-  { path: 'cart', component: CartComponent},
+  // { path: 'buymedicines', component: MedicalsComponent},
+  // { path: 'cart', component: CartComponent},
   { path: 'appointment/:id', component: PrescriptionsComponent},
   { path: 'prescriptions', component: PrescriptionviewComponent},
   { path: 'prescriptiondetail/:id', component: PrescriptiondetailComponent},
-  { path: 'myorders', component: MedicalcartComponent},
-  { path: 'orderdetail/:id', component: OrderdetailComponent},
-  { path: 'orderdetails/:id', component: UserorderdetailComponent},
-  { path: 'orders', component: UserordersComponent}
+  // { path: 'myorders', component: MedicalcartComponent},
+  // { path: 'orderdetail/:id', component: OrderdetailComponent},
+  // { path: 'orderdetails/:id', component: UserorderdetailComponent},
+  // { path: 'orders', component: UserordersComponent},
+  { path: 'chat', component: ChatbotComponent}
 ];
