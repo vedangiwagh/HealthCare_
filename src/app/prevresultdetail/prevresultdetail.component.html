@@ -1,0 +1,35 @@
+<br>
+<br>
+
+<div class="container" id ="contentToConvert">
+    <h2 class ="icon" (click) = "captureScreen()"><i class="fa fa-download" aria-hidden="true"></i></h2>
+  <div class="row">
+    <div class="col-md-6">
+    <h1>Results</h1>
+      <div>
+        <table>
+          <tr>
+            <th>Disease</th>
+            <th>Probability</th>
+          </tr>
+          <tr *ngFor = "let condi of result.prediction">
+            <td>{{condi.common_name}}</td>
+            <td>{{condi.probability}}</td>
+          </tr>
+        </table>
+      </div>
+      </div>
+      <div class="col-md-6">
+        <h1>Symptoms</h1>
+        <div *ngFor = "let mention of result.symptoms">
+            <li *ngIf = "mention.choice_id == 'present'" type="none">
+              <ul ><i class="ni ni-zoom-split-in"></i>{{mention.common_name}}</ul></li>
+            <li *ngIf = "mention.choice_id == 'absent'" type="none">
+            <ul ><i class="ni ni-fat-delete"></i>{{mention.common_name}}</ul></li>
+        </div>
+        <br>
+        <p style="display: inline"><i class="ni ni-zoom-split-in"></i> -- Present</p>&nbsp;&nbsp;&nbsp;
+        <p style="display: inline"><i class="ni ni-fat-delete"></i> -- Absent</p>
+      </div>
+  </div>  
+</div>

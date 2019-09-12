@@ -21,7 +21,7 @@
     <div *ngFor = "let item of items">
       <div *ngFor = "let choice of item.choices">
           <div class="custom-control custom-radio mb-3">
-              <input name="custom-radio-1" class="custom-control-input" id="{{choice.id}}" type="radio" value="{{ item.id }}" [(ngModel)] = "id" (click) = "submit2(item.id,choice.label)">
+              <input name="custom-radio-1" class="custom-control-input" id="{{choice.id}}" type="radio" (click) = "submit2(item.id,choice.label)">
               <label class="custom-control-label" for="{{choice.id}}">{{ choice.label }}</label>
           </div>
       </div>
@@ -45,7 +45,7 @@
     </div>
   </div>
   </div>
-<div class="col-md-6 sy"  *ngIf = "evidence">
+<div class="col-md-6 sy"  *ngIf = "evidences">
     <h2>Symptoms observed</h2>
     <div *ngFor = "let mention of evidences">
       <li *ngIf = "mention.choice_id == 'present'" type="none">
@@ -53,11 +53,15 @@
       <li *ngIf = "mention.choice_id == 'absent'" type="none">
       <ul ><i class="ni ni-fat-delete"></i>{{mention.common_name}}</ul></li>
     </div>
+    <br>
+        <p style="display: inline"><i class="ni ni-zoom-split-in"></i> -- Present</p>&nbsp;&nbsp;&nbsp;
+        <p style="display: inline"><i class="ni ni-fat-delete"></i> -- Absent</p>
 </div>
 </div>
 </div>
-<div class="container" *ngIf = "stop">
-  
+<div class="container" id ="contentToConvert" *ngIf = "stop">
+  <div class="row">
+    <div class="col-md-6">
     <h1>Results</h1>
       <div>
         <table>
@@ -70,7 +74,22 @@
             <td>{{condi.probability}}</td>
           </tr>
         </table>
+        <button class="btn btn-primary col-xs-3 offset-xs-4" routerLink = "/doc" (click) = "done()">Doctors near you</button>
       </div>
-      <button class="btn btn-primary col-xs-3" routerLink = "/doc" (click) = "done()">Doctors near you</button>
-  
+      </div>
+      <div class="col-md-6">
+          <h1>Symptoms</h1>
+          <div *ngFor = "let mention of evidences">
+              <li *ngIf = "mention.choice_id == 'present'" type="none">
+                <ul ><i class="ni ni-zoom-split-in"></i>{{mention.common_name}}</ul></li>
+              <li *ngIf = "mention.choice_id == 'absent'" type="none">
+              <ul ><i class="ni ni-fat-delete"></i>{{mention.common_name}}</ul></li>
+          </div>
+          <br>
+          <p style="display: inline"><i class="ni ni-zoom-split-in"></i> -- Present</p>&nbsp;&nbsp;&nbsp;
+          <p style="display: inline"><i class="ni ni-fat-delete"></i> -- Absent</p>
+        </div>
+        </div>
+
 </div>
+<h2 class ="icon" (click) = "captureScreen()" *ngIf = "stop"><i class="fa fa-download" aria-hidden="true"></i></h2>

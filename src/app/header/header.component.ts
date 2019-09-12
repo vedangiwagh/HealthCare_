@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   user_category: string;
   username : string;
   userna : string;
+  use: User;
   usern : boolean = false;
   userid: string;
   errMess: string;
@@ -30,6 +31,7 @@ export class HeaderComponent implements OnInit {
           this.usersservice.getUser()
           .subscribe((user) => {
           if(user) {
+            this.use = user;
             this.user_category = user.category;
           }
           else{

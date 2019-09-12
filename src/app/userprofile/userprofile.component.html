@@ -16,18 +16,19 @@
   		<label class="custom-control-label" for="Radio2">Patient</label>
 		</div><br>
 		</div>
-		<div class="col-md-3">
+		<!-- <div class="col-md-3">
 				<div class="custom-control custom-radio">
 				<input name="patient" class="custom-control-input" type="radio" [(ngModel)] = "category" value="medical" id="Radio3"checked="">
 				<label class="custom-control-label" for="Radio3">Medical</label>
 		</div><br>
-	</div>
+	</div> -->
     </div>  
 </div>
 <div class="container">
   <div *ngIf = "category === 'doctor'" class="form1">
     
-    <input type="text" name="name" placeholder="Name" [(ngModel)] = "name">
+	<input type="text" name="name" placeholder="Name" [(ngModel)] = "name">
+	<input type="number" name="age" placeholder="Age" [(ngModel)] = "age">
       <select name="gender" class="custom-select  mb-3" [(ngModel)] = "gender">
         <option>Gender</option>
       	<option value="Male">Male</option>
@@ -139,10 +140,10 @@
 
 
 <div class="container">
-		<div *ngIf = "category === 'medical'" class="form1">
+		<!-- <div *ngIf = "category === 'medical'" class="form1">
 			<input type="text" name="name" placeholder="Name" [(ngModel)] = "name">
 			<input type="number" name="contact" maxlength="10" placeholder="Phone number" [(ngModel)] = "phno"><br>
 			<input type="text" name="location" placeholder="Location" [(ngModel)] = "location"><br>
-			</div> 
+			</div>  -->
       <button type="submit" class="btn btn-primary" (click) = "saveprofile()">SUBMIT</button>
 	</div>

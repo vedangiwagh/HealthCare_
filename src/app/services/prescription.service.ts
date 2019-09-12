@@ -88,5 +88,14 @@ export class PrescriptionService {
     //   return { _id, ...data };
     // }));
   }
-}
+  getPrev(id: string): Observable<Prescription[]> {
+    return this.afs.collection('patients').doc(id).collection<Prescription>('prescriptions').snapshotChanges()
+    .pipe(map(actions => {
+      return actions.map(action => {
+        const data = action.payload.doc.data() as Prescription;
+        const _id = action.payload.doc.id;
+        return { _id, ...data };
+      });
+    }));
+  }}
 

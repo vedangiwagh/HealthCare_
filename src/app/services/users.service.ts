@@ -37,26 +37,26 @@ export class UsersService {
           return { _id, ...data };
         }));
     }
-    postPatient(category: string, name:string,location: string) {
+    postPatient(category: string, name:string,location: string,sex: string,age: number) {
       if (this.userId) {
-        return this.afs.collection('users').doc(this.userId).set({category: category, name: name,email: this.username,location: location});
+        return this.afs.collection('users').doc(this.userId).set({category: category, name: name,email: this.username,location: location,sex: sex.toLowerCase(),age: age});
       } else {
         return Promise.reject(new Error('No User Logged In!'));
       }
     }
 
-    postDoc(category:string, name:string,location: string) {
+    postDoc(category:string, name:string,location: string,sex: string,age: number) {
       if (this.userId) {
-        return this.afs.collection('users').doc(this.userId).set({name: name,email: this.username, category: category,location: location});
+        return this.afs.collection('users').doc(this.userId).set({name: name,email: this.username, category: category,location: location,sex: sex.toLowerCase(),age: age});
       }
       else {
         return Promise.reject(new Error('No User Logged In!'));
       }
     }
 
-    postMed(category:string, name:string,location: string) {
+    postMed(category:string, name:string,location: string,sex: string,age: number) {
       if (this.userId) {
-        return this.afs.collection('users').doc(this.userId).set({name: name,email: this.username, category: category,location: location});
+        return this.afs.collection('users').doc(this.userId).set({name: name,email: this.username, category: category,location: location,sex: sex.toLowerCase(),age: age});
       }
       else {
         return Promise.reject(new Error('No User Logged In!'));

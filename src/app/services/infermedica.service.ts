@@ -93,4 +93,30 @@ export class InfermedicaService {
           return { _id, ...data };
         }));
     }
+    getresults(id: string): Observable<any[]>
+    {
+      if(id)
+      {
+        return this.afs.collection('patients').doc(id).collection<any>('results').snapshotChanges()
+        .pipe(map(actions => {
+          return actions.map(action => {
+            const data = action.payload.doc.data() as any;
+            const _id = action.payload.doc.id;
+            return { _id, ...data };
+          });
+        }));
+      }
+    }
+    getResult(userid: string,id: string): Observable<any>
+    {
+      if(userid)
+      {
+          return this.afs.collection('patients').doc(userid).collection('results').doc<any>(id).valueChanges();
+          // .pipe(map(action => {
+          //   const data = action.payload.data() as Prescription;
+          //   const _id = action.payload.id;
+          //   return { _id, ...data };
+          // }));
+      }
+    }
 }

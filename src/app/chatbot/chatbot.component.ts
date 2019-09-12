@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { InfermedicaService } from '../services/infermedica.service';
 import { TouchSequence } from 'selenium-webdriver';
-
+import { UsersService } from '../services/users.service';
+import * as jspdf from 'jspdf'; 
+import html2canvas from 'html2canvas';  
 
 @Component({
   selector: 'app-chatbot',
@@ -28,11 +30,19 @@ export class ChatbotComponent implements OnInit {
   choice: string = 'present';
   stop: boolean = false;
   condition: any = [];
-  constructor(private infermedica: InfermedicaService) { }
+  userid: string;
+  constructor(private infermedica: InfermedicaService,
+    private usersservice: UsersService) { }
 
   ngOnInit() {
     this.msgs.push(this.msg);
     console.log(this.msgs)
+    this.usersservice.getUser()
+    .subscribe(user => {
+      this.userid = user._id;
+      this.sex = user.sex;
+      this.age = user.age
+    });
   }
   submit()
   {
@@ -117,6 +127,7 @@ export class ChatbotComponent implements OnInit {
   {
     console.log(id,label);
     this.choice = label;
+    this.id = id;
   }
   submit3(id: string)
   {
@@ -155,5 +166,22 @@ export class ChatbotComponent implements OnInit {
   done()
   {
     this.infermedica.postResults(this.condition,this.evidences)    
+  }
+  public captureScreen()  
+  {  
+    var data = document.getElementById('contentToConvert');  
+    html2canvas(data).then(canvas => {  
+      // Few necessary setting options  
+      var imgWidth = 208;   
+      var pageHeight = 295;    
+      var imgHeight = canvas.height * imgWidth / canvas.width;  
+      var heightLeft = imgHeight;  
+  
+      const contentDataURL = canvas.toDataURL('image/png')  
+      let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF  
+      var position = 0;  
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
+      pdf.save('result.pdf'); // Generated PDF   
+    });  
   }
 }

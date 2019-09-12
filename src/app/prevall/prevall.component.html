@@ -1,0 +1,29 @@
+<!-- <div class="container">
+    <div class="card" *ngFor = "let result of results">
+    <div class="card-header"><h4 class="card-title">View Result</h4></div>
+     <div class="card-body"> <div class="row">
+      <div class="col-md-6">
+          {{result.timestamp.seconds * 1000 | date:'dd-MM-yyyy h:mm:ss a' }}      </div>
+          {{result._id}}
+   <div class="col-md-6">
+      <button [routerLink]="['/prescriptiondetail', pre._id]" class="btn btn-info">View</button>
+    </div>
+    </div>
+   </div>
+  </div>
+  </div> -->
+  <div class="container">
+      <div class="card" *ngFor = "let result of results">
+      <div class="card-header"><h4 class="card-title">View Results</h4></div>
+       <div class="card-body"> <div class="row">
+        <div class="col-md-6">
+     {{result.timestamp.seconds * 1000 | date:'dd-MM-yyyy h:mm:ss a' }} </div>
+     <div class="col-md-6">
+        <button [routerLink]="['/prevalldetail', patient._id, result._id]" class="btn btn-info">View</button>
+      </div>
+      </div>
+     </div>
+    </div>
+      
+    
+    </div>

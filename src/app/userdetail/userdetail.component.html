@@ -25,8 +25,8 @@
         <th>Contact:</th><td>{{patient.contact}}</td>
       </tr>
    </table>
-   <!-- <button style="display: inline" class="btn btn-primary">Previous Prescriptions</button>
-   <button style="display: inline" class="btn btn-primary">Previous Results</button> -->
+   <button style="display: inline" class="btn btn-primary" [routerLink]="['/prevprescription', patient._id]">Previous Prescriptions</button>
+   <button style="display: inline" class="btn btn-primary" [routerLink]="['/prevresult', patient._id]">Previous Results</button>
 </div>
 </div>
 <!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

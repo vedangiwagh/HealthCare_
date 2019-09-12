@@ -76,7 +76,7 @@ export class UserprofileComponent implements OnInit {
   {
     if(this.category == 'doctor')
     {
-      this.usersservice.postDoc(this.category, this.name,this.location);
+      this.usersservice.postDoc(this.category, this.name,this.location,this.gender,this.age);
       this.doctorservice.isDoctor()
       .then(value => {
         if(!value)
@@ -93,7 +93,7 @@ export class UserprofileComponent implements OnInit {
     }
     else if(this.category == 'patient')
     {
-      this.usersservice.postPatient(this.category, this.name,this.location);
+      this.usersservice.postPatient(this.category, this.name,this.location,this.gender,this.age);
       this.patientservice.isPatient()
       .then(value => {
         if(!value)
@@ -108,7 +108,7 @@ export class UserprofileComponent implements OnInit {
     }
     else if(this.category == 'medical')
     {
-      this.usersservice.postMed(this.category, this.name, this.location);
+      this.usersservice.postMed(this.category, this.name, this.location,this.gender,this.age);
       this.medicalservice.isMedical()
       .then(value => {
         if(!value)

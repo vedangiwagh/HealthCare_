@@ -20,7 +20,9 @@ import { UserordersComponent } from '../userorders/userorders.component';
 import { UserorderdetailComponent } from '../userorderdetail/userorderdetail.component';
 import { ChatbotComponent } from '../chatbot/chatbot.component';
 import { DoctornearComponent } from '../doctornear/doctornear.component';
-
+import { PrevprescriptionsComponent } from '../prevprescriptions/prevprescriptions.component';
+import { PrevallComponent } from '../prevall/prevall.component';
+import { PrevresultdetailComponent } from '../prevresultdetail/prevresultdetail.component'
 
 export const routes: Routes = [
   { path: 'home',  component: HomeComponent },
@@ -43,6 +45,9 @@ export const routes: Routes = [
   // { path: 'orderdetails/:id', component: UserorderdetailComponent},
   // { path: 'orders', component: UserordersComponent},
   { path: 'chat', component: ChatbotComponent},
-  { path: 'doc', component: DoctornearComponent}
+  { path: 'doc', component: DoctornearComponent},
+  { path: 'prevprescription/:id', component: PrevprescriptionsComponent},
+  { path: 'prevresult/:id', component: PrevallComponent},
+  { path: 'prevalldetail/:userid/:id', component: PrevresultdetailComponent}
 
 ];
