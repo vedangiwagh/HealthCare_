@@ -2,7 +2,7 @@
 <br>
 <div class="container" *ngIf = "!stop">
   <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-6 ch">
     <div class="scroll">
 <h1 *ngFor= "let ms of msgs">
   <p class="chat">{{ms}}</p>
@@ -45,23 +45,32 @@
     </div>
   </div>
   </div>
-<div class="col-md-6" *ngIf = "evidence">
-  <div>
-    <h1>SYmptoms observed by your input</h1>
+<div class="col-md-6 sy"  *ngIf = "evidence">
+    <h2>Symptoms observed</h2>
     <div *ngFor = "let mention of evidences">
-      <li type="none" *ngIf = "mention.choice_id == 'present'"><i class="ni ni-zoom-split-in"></i>{{mention.common_name}}</li>
-      <li type="none" *ngIf = "mention.choice_id == 'absent'"><i class="ni ni-fat-delete"></i>{{mention.common_name}}</li>
+      <li *ngIf = "mention.choice_id == 'present'" type="none">
+        <ul ><i class="ni ni-zoom-split-in"></i>{{mention.common_name}}</ul></li>
+      <li *ngIf = "mention.choice_id == 'absent'" type="none">
+      <ul ><i class="ni ni-fat-delete"></i>{{mention.common_name}}</ul></li>
     </div>
-  </div>
 </div>
 </div>
 </div>
 <div class="container" *ngIf = "stop">
-  <div class="row">
+  
     <h1>Results</h1>
-      <div *ngFor = "let condi of condition">
-        <h2>{{condi.common_name}}{{condi.probability}}</h2>
+      <div>
+        <table>
+          <tr>
+            <th>Disease</th>
+            <td>Probability</td>
+          </tr>
+          <tr *ngFor = "let condi of condition">
+            <th>{{condi.common_name}}</th>
+            <td>{{condi.probability}}</td>
+          </tr>
+        </table>
       </div>
       <button class="btn btn-primary col-xs-3" routerLink = "/doc" (click) = "done()">Doctors near you</button>
-  </div>
+  
 </div>

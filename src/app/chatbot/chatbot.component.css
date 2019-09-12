@@ -1,6 +1,6 @@
 .chat
 {
-    background-color: lightgreen;
+    background-color: lightblue;
     border-radius: 20%;
     padding: 5px;
 }
@@ -13,4 +13,40 @@
 {
     height: 60vh;
     overflow-y: scroll
+}
+.container
+{
+	height: 80vh;
+	border-radius: 5px;
+	border: 2px solid grey;
+	padding-right: 3%;
+	padding-left: 3%;
+	padding-top: 2%
+	/*border-bottom: 5px solid grey;*/
+}
+.ch
+{
+	background-color: white;
+
+}
+.btn
+{
+	margin-top: 2%;
+}
+.sy
+{
+	background-color: lightgreen;
+}
+table
+{
+	margin-top: 4%;
+	margin-bottom: 4%;
+	/*border-right: 2px solid grey;*/
+}
+td,th,tr
+{
+	border: 2px solid grey;
+
+	padding: 2% 2% 2% 2%;
+	/*border-right: 3px;*/
 }
