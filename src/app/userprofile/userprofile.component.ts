@@ -58,6 +58,7 @@ export class UserprofileComponent implements OnInit {
           this.weight = doctor.weight;
           this.gender = doctor.gender;
           this.phno = doctor.contact;
+          this.location =doctor.location;
         });
       }
       else if(this.category == 'medical')
@@ -75,7 +76,7 @@ export class UserprofileComponent implements OnInit {
   {
     if(this.category == 'doctor')
     {
-      this.usersservice.postDoc(this.category, this.name);
+      this.usersservice.postDoc(this.category, this.name,this.location);
       this.doctorservice.isDoctor()
       .then(value => {
         if(!value)
@@ -92,7 +93,7 @@ export class UserprofileComponent implements OnInit {
     }
     else if(this.category == 'patient')
     {
-      this.usersservice.postPatient(this.category, this.name);
+      this.usersservice.postPatient(this.category, this.name,this.location);
       this.patientservice.isPatient()
       .then(value => {
         if(!value)

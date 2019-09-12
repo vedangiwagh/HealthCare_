@@ -19,6 +19,7 @@ import { OrderdetailComponent } from '../orderdetail/orderdetail.component';
 import { UserordersComponent } from '../userorders/userorders.component';
 import { UserorderdetailComponent } from '../userorderdetail/userorderdetail.component';
 import { ChatbotComponent } from '../chatbot/chatbot.component';
+import { DoctornearComponent } from '../doctornear/doctornear.component';
 
 
 export const routes: Routes = [
@@ -41,5 +42,7 @@ export const routes: Routes = [
   // { path: 'orderdetail/:id', component: OrderdetailComponent},
   // { path: 'orderdetails/:id', component: UserorderdetailComponent},
   // { path: 'orders', component: UserordersComponent},
-  { path: 'chat', component: ChatbotComponent}
+  { path: 'chat', component: ChatbotComponent},
+  { path: 'doc', component: DoctornearComponent}
+
 ];

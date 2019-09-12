@@ -45,10 +45,10 @@
     </div>
   </div>
   </div>
-<div class="col-md-6" *ngIf = "bod">
+<div class="col-md-6" *ngIf = "evidence">
   <div>
     <h1>SYmptoms observed by your input</h1>
-    <div *ngFor = "let mention of bod.mentions">
+    <div *ngFor = "let mention of evidences">
       <li type="none" *ngIf = "mention.choice_id == 'present'"><i class="ni ni-zoom-split-in"></i>{{mention.common_name}}</li>
       <li type="none" *ngIf = "mention.choice_id == 'absent'"><i class="ni ni-fat-delete"></i>{{mention.common_name}}</li>
     </div>
@@ -62,6 +62,6 @@
       <div *ngFor = "let condi of condition">
         <h2>{{condi.common_name}}{{condi.probability}}</h2>
       </div>
-      <button class="btn btn-primary col-xs-3" (click) = "done()">Done</button>
+      <button class="btn btn-primary col-xs-3" routerLink = "/doc" (click) = "done()">Doctors near you</button>
   </div>
 </div>

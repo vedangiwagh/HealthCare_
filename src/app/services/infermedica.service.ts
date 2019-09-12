@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AuthService } from '../services/auth.service';
+import { User } from '../shared/user';
+import { Doctor } from '../shared/doctor';
+import * as firebase from 'firebase/app';
 const headerDict = {
   'Content-Type': 'application/json',
   'App-Id': 'fdf34a83',
@@ -19,6 +22,7 @@ const requestOptions = {
 export class InfermedicaService {
   userId: string = undefined;
   username: string = undefined;
+  loc: string;
   private currentUser: firebase.User = null;
   constructor(private afs: AngularFirestore,
     private authService: AuthService,
@@ -34,12 +38,13 @@ export class InfermedicaService {
         }
     });    
   }
-  postResults(result: any)
+  postResults(result: any,symp: any)
   {
+    const timestamp = firebase.firestore.FieldValue.serverTimestamp()
     console.log(result);
     if(this.userId)
     {
-      return this.afs.collection('patients').doc(this.userId).collection('results').add({"prediction": result})
+      return this.afs.collection('patients').doc(this.userId).collection('results').add({"prediction": result,"symptoms": symp,"timestamp": timestamp})
     }
     else{
       return Promise.reject(new Error('No User Logged In!'));
@@ -49,6 +54,10 @@ export class InfermedicaService {
   {
     console.log(text);
     return this.http.post("https://api.infermedica.com/v2/parse",{"text": text},requestOptions)
+  }
+  getsymptom(id: string): Observable<any>
+  {
+    return this.http.get("https://api.infermedica.com/v2/symptoms/" + id,requestOptions);
   }
   diagnosis(evidence: any,sex: string,age: number)
   {
@@ -61,4 +70,27 @@ export class InfermedicaService {
     "evidence": evidence
   },requestOptions)
   }
+  docnearme(loc: string):Observable<Doctor[]>
+  {
+    if(loc)
+    {
+      return this.afs.collection<Doctor>('doctors',ref => ref.where('location', '==', loc)).snapshotChanges()
+      .pipe(map(actions => {
+        return actions.map(action => {
+          const data = action.payload.doc.data() as Doctor;
+          const _id = action.payload.doc.id;
+          return { _id, ...data };
+        });
+      }));
+    }
+  }
+  getUser()
+    {
+      return this.afs.doc<User>('users/' + this.userId).snapshotChanges()
+      .pipe(map(action => {
+          const data = action.payload.data() as User;
+          const _id = action.payload.id;
+          return { _id, ...data };
+        }));
+    }
 }

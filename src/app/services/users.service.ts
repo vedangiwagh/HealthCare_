@@ -37,17 +37,17 @@ export class UsersService {
           return { _id, ...data };
         }));
     }
-    postPatient(category: string, name:string) {
+    postPatient(category: string, name:string,location: string) {
       if (this.userId) {
-        return this.afs.collection('users').doc(this.userId).set({category: category, name: name,email: this.username});
+        return this.afs.collection('users').doc(this.userId).set({category: category, name: name,email: this.username,location: location});
       } else {
         return Promise.reject(new Error('No User Logged In!'));
       }
     }
 
-    postDoc(category:string, name:string) {
+    postDoc(category:string, name:string,location: string) {
       if (this.userId) {
-        return this.afs.collection('users').doc(this.userId).set({name: name,email: this.username, category: category});
+        return this.afs.collection('users').doc(this.userId).set({name: name,email: this.username, category: category,location: location});
       }
       else {
         return Promise.reject(new Error('No User Logged In!'));
@@ -56,7 +56,7 @@ export class UsersService {
 
     postMed(category:string, name:string,location: string) {
       if (this.userId) {
-        return this.afs.collection('users').doc(this.userId).set({name: name,email: this.username, category: category});
+        return this.afs.collection('users').doc(this.userId).set({name: name,email: this.username, category: category,location: location});
       }
       else {
         return Promise.reject(new Error('No User Logged In!'));

@@ -33,6 +33,7 @@ import { UserordersComponent } from './userorders/userorders.component';
 import { UserorderdetailComponent } from './userorderdetail/userorderdetail.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
 import { HttpModule } from '@angular/http';
+import { DoctornearComponent } from './doctornear/doctornear.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { HttpModule } from '@angular/http';
     OrderdetailComponent,
     UserordersComponent,
     UserorderdetailComponent,
-    ChatbotComponent
+    ChatbotComponent,
+    DoctornearComponent
   ],
   imports: [
     BrowserModule,

@@ -8,4 +8,5 @@ export class Patient {
     gender: string;
     age: number;
     bloodgroup: string;
+    location: string;
 }

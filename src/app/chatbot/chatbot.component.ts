@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InfermedicaService } from '../services/infermedica.service';
+import { TouchSequence } from 'selenium-webdriver';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class ChatbotComponent implements OnInit {
   age: number;
   extras: any;
   evidence: any = [];
+  evidences: any = [];
   msgs: string[] = [];
   bod:any;
   q: any;
@@ -44,7 +46,10 @@ export class ChatbotComponent implements OnInit {
       this.bod.mentions.forEach(element => {
         this.evidence.push({
           'id': element.id,'choice_id': element.choice_id,'initial': true
-        })      
+        }) 
+        this.evidences.push({
+          'id': element.id,'choice_id': element.choice_id,'initial': true,'common_name': element.common_name
+        })       
       });
       console.log(this.evidence);
       // this.evidence = JSON.stringify(this.evidence);
@@ -85,6 +90,14 @@ export class ChatbotComponent implements OnInit {
     this.evidence.push({
       'id': this.id,'choice_id': this.choice
     })
+    this.infermedica.getsymptom(this.id)
+    .subscribe(symptom => {
+      console.log(symptom)
+      symptom = symptom.json();
+      this.evidences.push({
+        'id': this.id,'choice_id': this.choice,'common_name': symptom.common_name
+      })    
+    })
     console.log(this.evidence);
     this.infermedica.diagnosis(this.evidence,"female",20)
       .subscribe(op => {
@@ -115,7 +128,15 @@ export class ChatbotComponent implements OnInit {
     this.ids.forEach(element => {
       this.evidence.push({
         'id': element,'choice_id': "present"
-      })      
+      })
+      this.infermedica.getsymptom(element)
+      .subscribe(symptom => {
+        console.log(symptom)
+        symptom = symptom.json();
+        this.evidences.push({
+          'id': element,'choice_id': "present",'common_name': symptom.common_name
+        })    
+      })     
     });
     this.infermedica.diagnosis(this.evidence,"female",20)
       .subscribe(op => {
@@ -133,6 +154,6 @@ export class ChatbotComponent implements OnInit {
   }
   done()
   {
-    this.infermedica.postResults(this.condition)    
+    this.infermedica.postResults(this.condition,this.evidences)    
   }
 }
